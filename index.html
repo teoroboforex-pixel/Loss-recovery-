@@ -1,214 +1,314 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SKh — Loss Recovery Hub</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #020202;
-      color: white;
-      margin: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#050507" />
+<title>OnlyProfit — программы латентного арбитража</title>
+<meta name="description" content="OnlyForex и OnlyBinary опережают брокера и открывают сделку, пока у него ещё старая цена. Торгуют автоматически, есть бесплатный тестовый ключ." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23050507'/%3E%3Ctext x='50' y='68' font-size='54' font-family='sans-serif' font-weight='bold' fill='%2300ff88' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#050507', s1: '#090a0d', s2: '#0c0d11', s3: '#101116',
+          ink: '#eeeef2', reading: '#d5d5e1', sec: '#b7b7c9', muted: '#9797ab',
+          accent: '#00ff88', forex: '#20baff'
+        },
+        fontFamily: { sans: ['Geologica', 'system-ui', 'sans-serif'], mono: ['"Noto Sans Mono"', 'monospace'] },
+        maxWidth: { site: '1500px' }
+      }
     }
+  }
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200..800&family=Noto+Sans+Mono:wght@300..700&display=swap');
 
-    .hero-gradient {
-      background: 
-        radial-gradient(ellipse 100% 80% at 50% -40%, rgba(34, 197, 94, 0.22), transparent 50%),
-        radial-gradient(ellipse 60% 50% at 85% 30%, rgba(16, 185, 129, 0.1), transparent),
-        #020202;
-    }
+  :root {
+    --accent: #00ff88;
+    --accent-rgb: 0, 255, 136;
+  }
 
-    .pill-header {
-      background: rgba(22, 22, 22, 0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.09);
-    }
+  html { scroll-behavior: smooth; }
 
-    .green-glow {
-      box-shadow: 0 0 60px rgba(34, 197, 94, 0.45);
-    }
-  </style>
+  body {
+    font-family: 'Geologica', system-ui, sans-serif;
+    background: #050507;
+    color: #eeeef2;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: rgba(var(--accent-rgb), .18); color: var(--accent); }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #050507; }
+  ::-webkit-scrollbar-thumb { background: #b7b7c9; border-radius: 2px; }
+
+  /* зерно поверх всего */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+
+  .glass-liquid {
+    isolation: isolate;
+    backdrop-filter: blur(32px) saturate(160%);
+    background: linear-gradient(120deg, #ffffff17 0%, #ffffff05 40%, #ffffff0d 100%), #0c0d12d1;
+    border: 1px solid #ffffff24;
+    box-shadow: inset 0 1px #ffffff38, inset 0 -1px #ffffff0d, 0 18px 50px #0000008c;
+  }
+
+  .card-thick {
+    background: linear-gradient(#14151b 0%, #0d0e13 100%);
+    border: 1px solid #ffffff24;
+    border-radius: 20px;
+    box-shadow: inset 0 1px #ffffff24, 1px 1px #1a1b22, 2px 2px #17181f, 3px 3px #15161c,
+                4px 4px #131419, 5px 5px #111217, 6px 6px #0f1015, 7px 7px #0d0e12,
+                8px 8px #0b0c10, 16px 22px 34px #000c;
+  }
+
+  .tile-thick {
+    background: linear-gradient(#14151b 0%, #0d0e13 100%);
+    border: 1px solid #ffffff24;
+    border-radius: 16px;
+    box-shadow: inset 0 1px #ffffff24, 1px 1px #1a1b22, 2px 2px #17181f, 3px 3px #141519,
+                4px 4px #111217, 5px 5px #0e0f13, 10px 14px 24px #000c;
+  }
+
+  .hero-glow {
+    position: absolute; pointer-events: none; filter: blur(70px); border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), .09) 0%, rgba(var(--accent-rgb), .02) 40%, transparent 70%);
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @keyframes cueLine { 0% { opacity: 0; transform: translateY(-100%); } 35% { opacity: 1; } 100% { opacity: 0; transform: translateY(100%); } }
+  @keyframes cueChevron { 0%, 100% { opacity: .5; transform: translateY(0); } 55% { opacity: 1; transform: translateY(4px); } }
+  .cue-line { animation: cueLine 2.6s ease-in-out infinite; }
+  .cue-chevron { animation: cueChevron 2.6s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .cue-line, .cue-chevron { animation: none; }
+  }
+
+  .acct { transition: background-color .2s; }
+  .acct[aria-pressed="true"] { background: rgba(var(--accent-rgb), .07); }
+  .acct[aria-pressed="true"] .acct-bar { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .acct[aria-pressed="true"] .acct-name { color: #eeeef2; }
+  .acct[aria-pressed="true"] .acct-val { color: var(--accent); }
+</style>
 </head>
-<body class="hero-gradient">
 
-  <!-- Floating pill header -->
-  <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-    <div class="pill-header rounded-full flex items-center justify-between px-5 py-2.5 w-full max-w-3xl">
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-[11px] font-bold text-black">SKh</div>
-        <span class="font-semibold text-sm">Loss Recovery</span>
+<body>
+
+<!-- NAV -->
+<nav class="fixed inset-x-0 top-3 z-40 flex justify-center px-3 md:top-4 md:px-6">
+  <div class="glass-liquid flex w-full max-w-[1240px] flex-col rounded-[26px] md:rounded-[28px]">
+    <div class="flex h-14 items-center justify-between pl-5 pr-2 md:pl-6 md:pr-2.5">
+      <a href="#top" class="flex items-center gap-2.5">
+        <svg viewBox="0 0 100 86.43" height="22" fill="white">
+          <defs>
+            <clipPath id="opw"><polygon points="-22.5,160.62 129.03,-98.28 -129.87,-249.81 -281.4,9.09" /></clipPath>
+            <clipPath id="opg"><polygon points="-15.6,164.67 135.93,-94.23 394.83,57.3 243.3,316.2" /></clipPath>
+          </defs>
+          <path clip-path="url(#opw)" d="M64.53,32.15A32.44,29.4 0 1 1 -0.35,32.15A32.44,29.4 0 1 1 64.53,32.15ZM50.12,32.19A17.75,18.28 0 1 0 14.62,32.19A17.75,18.28 0 1 0 50.12,32.19Z" />
+          <path clip-path="url(#opg)" fill="#00ff88" d="M45.6,70.86L45.6,55.3 45.6,54.31C46.55,53.77 48.53,50.42 50.63,46.86C52.72,43.3 55.1,39.29 55.91,37.94C57.26,35.69 58.77,33.14 62.75,26.44C63.57,25.06 65.06,22.58 66.06,20.92C67.06,19.26 69.17,15.73 70.77,13.07C72.36,10.41 73.9,7.83 74.19,7.35C74.49,6.87 75.56,5.07 76.58,3.36C78.4,0.3 79.01,-0.62 78.04,1.16C77.76,1.66 75.87,5.3 73.84,9.23C69,18.59 68.59,19.38 67.64,21.18C67.2,22.02 66.83,22.77 66.83,22.85C66.83,22.95 68.16,22.99 71.78,22.99C79.13,22.99 81.47,23.27 85.61,24.65C93.21,27.18 98.24,32.91 99.64,40.67C99.99,42.61 100.03,46.25 99.71,48.3C99.17,51.84 98.03,54.69 96.13,57.29C95.44,58.22 93.63,60.11 92.65,60.92C91.65,61.74 89.64,62.98 88.27,63.63C85.32,65.02 83.42,65.56 79.65,66.11C77.97,66.35 77.12,66.37 69.06,66.45L60.18,66.45 60.18,76.46L60.18,86.4 52.95,86.4L45.6,86.4 45.6,70.86Z M76.6,54.78C78.68,54.4 80.47,53.65 81.79,52.6C84.15,50.72 85.33,48.03 85.32,44.52C85.3,40.11 83.44,36.91 79.94,35.29C77.51,34.16 76.09,34.02 67.21,34.07L60.18,34.11 60.18,44.57L60.18,55.03 67.75,55.03C74.65,55.03 75.31,55.01 76.6,54.78Z" />
+        </svg>
+        <span class="text-[15px] font-semibold tracking-wide"><span class="text-white">Only</span><span class="text-accent">Profit</span></span>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <div class="hidden items-center gap-6 lg:flex">
+          <a href="#products" class="text-[15px] font-semibold tracking-wide"><span class="text-reading hover:text-white transition">Only</span><span class="text-forex">Forex</span></a>
+          <a href="#products" class="text-[15px] font-semibold tracking-wide"><span class="text-reading hover:text-white transition">Only</span><span class="text-accent">Binary</span></a>
+          <div class="h-3.5 w-px bg-white/12"></div>
+          <a href="#results" class="text-[15px] font-medium text-reading hover:text-white transition">Статьи</a>
+          <a href="#kit" class="text-[15px] font-medium text-reading hover:text-white transition">Обучение</a>
+        </div>
+        <div class="hidden h-5 w-px bg-white/12 lg:block"></div>
+        <div class="flex items-center gap-0.5 rounded-full border border-white/12 p-0.5">
+          <button type="button" class="rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide text-sec hover:text-white transition">EN</button>
+          <button type="button" class="rounded-full bg-white/14 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white">RU</button>
+        </div>
+        <a href="#start" class="hidden rounded-full bg-accent px-5 py-2 text-[15px] font-semibold text-bg transition hover:shadow-[0_0_20px_rgba(0,255,136,0.25)] lg:inline-flex">Войти</a>
+        <button id="burger" type="button" aria-label="Меню" aria-expanded="false" class="flex size-9 flex-col items-center justify-center gap-[5px] rounded-full border border-white/12 bg-white/6 transition hover:bg-white/14 lg:hidden">
+          <span class="block h-px w-4 bg-white"></span>
+          <span class="block h-px w-4 bg-white"></span>
+        </button>
       </div>
+    </div>
 
-      <div class="hidden sm:flex items-center gap-6 text-[13px] text-white/55">
-        <a href="#how" class="hover:text-white transition">Как работает</a>
-        <a href="#platforms" class="hover:text-white transition">Платформы</a>
-        <a href="#faq" class="hover:text-white transition">FAQ</a>
+    <div id="mobileMenu" class="hidden border-t border-white/8 px-5 pb-4 pt-4 lg:hidden">
+      <div class="flex flex-col gap-1">
+        <a href="#products" class="py-1.5 text-[19px] font-semibold"><span>Only</span><span class="text-forex">Forex</span></a>
+        <a href="#products" class="py-1.5 text-[19px] font-semibold"><span>Only</span><span class="text-accent">Binary</span></a>
+        <a href="#results" class="py-1.5 text-[15px] text-ink">Доказательства</a>
+        <a href="#kit" class="py-1.5 text-[15px] text-ink">Обучение</a>
+        <a href="#start" class="mt-2 rounded-full bg-accent py-2.5 text-center text-[15px] font-semibold text-bg">Получить тестовый ключ</a>
       </div>
+    </div>
+  </div>
+</nav>
 
-      <a href="https://t.me/BinaryManager" class="bg-green-500 hover:bg-green-400 text-black text-[13px] font-semibold px-4 py-1.5 rounded-full transition">
-        Написать
+<!-- HERO -->
+<section id="top" class="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 text-center">
+  <div class="hero-glow" style="width:900px;height:900px;left:50%;top:-45%;transform:translateX(-50%)"></div>
+  <div class="hero-glow" style="width:520px;height:520px;right:-12%;top:38%;opacity:.6"></div>
+
+  <div class="pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true">
+    <div class="absolute left-[-18%] top-[18%] h-[42%] w-[52%] rounded-[12px] border border-white/40 bg-[linear-gradient(140deg,#1b3d52,#0a1218)]"></div>
+    <div class="absolute right-[-14%] top-[46%] h-[38%] w-[46%] rounded-[12px] border border-white/40 bg-[linear-gradient(140deg,#123a26,#0a1810)]"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto flex w-full max-w-site flex-1 items-center justify-center pt-20">
+    <h1 class="font-light leading-[1.02] tracking-[-0.025em] text-[calc(clamp(30px,8.8vw,42px))] md:text-[calc(clamp(40px,min(4.6vw,8.2svh),120px))]">
+      <span class="block">Рынок движется.</span>
+      <span class="block">Брокер отстаёт.</span>
+      <span class="block font-normal text-accent">Мы исполняем.</span>
+    </h1>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center pb-24">
+    <p class="mb-8 max-w-[560px] text-[16px] leading-relaxed text-sec">
+      <strong class="font-semibold text-ink">Инфраструктура латентного арбитража — с 2023 года.</strong><br />
+      Автоматическое исполнение в окне задержки котировок.
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-7">
+      <a href="#start" class="group inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-[16px] font-semibold text-bg transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(0,255,136,0.28)]">
+        Начать
+        <svg class="ml-3 h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M13 5l7 7-7 7" /></svg>
+      </a>
+      <a href="#products" class="group inline-flex items-center text-[16px] font-medium text-ink transition hover:text-accent">
+        <span class="mr-3 block h-px w-8 bg-current transition-all duration-500 group-hover:w-14"></span>Продукты
       </a>
     </div>
   </div>
 
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center px-4">
-    <div class="text-center max-w-4xl pt-16">
-      <h1 class="text-[clamp(2.6rem,7.5vw,5.5rem)] font-bold leading-[1.08] tracking-tight mb-8">
-        Убыток на счёте.<br>
-        Мы берём управление.<br>
-        <span class="text-green-400">Вы получаете результат.</span>
-      </h1>
+  <div class="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1.5 md:flex" aria-hidden="true">
+    <span class="relative block h-9 w-[2px] overflow-hidden rounded-full bg-white/14">
+      <span class="cue-line absolute inset-x-0 top-0 block h-5 rounded-full bg-gradient-to-b from-transparent via-accent to-transparent"></span>
+    </span>
+    <svg class="cue-chevron h-2.5 w-4 text-accent" viewBox="0 0 12 8" fill="none" stroke="currentColor"><path d="M1 1.5l5 5 5-5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" /></svg>
+  </div>
+</section>
 
-      <p class="text-white/40 text-lg sm:text-xl max-w-lg mx-auto mb-12 leading-relaxed">
-        Восстанавливаем убытки на бинарных опционах и криптобиржах.<br>
-        Все финансовые риски берём на себя.
-      </p>
+<!-- HOW -->
+<section id="how" class="reveal mx-auto max-w-site px-[clamp(20px,4vw,80px)] py-20 md:py-28">
+  <p class="mx-auto max-w-[1000px] text-center text-[calc(clamp(25px,2.6vw,40px))] leading-[1.18] tracking-[-0.015em] text-pretty">
+    Что, если ваш ордер <span class="text-accent">уже стоит в рынке</span> за мгновение до того, как цена изменится у брокера?
+  </p>
+  <p class="mx-auto mt-14 max-w-[1000px] text-center text-[calc(clamp(25px,2.6vw,40px))] leading-[1.18] tracking-[-0.015em] text-pretty">
+    Цена до брокера проходит длинный путь.<br />
+    Каждый шаг — <span class="text-accent">потеря времени.</span>
+  </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-        <a href="https://t.me/BinaryManager" 
-           class="bg-green-500 hover:bg-green-400 text-black font-semibold px-10 py-3.5 rounded-full text-[15px] transition green-glow">
-          Начать →
-        </a>
-        <a href="https://t.me/LossRecoveryHub" class="text-white/45 hover:text-white text-[15px] font-medium transition">
-          Результаты
-        </a>
-      </div>
+  <div class="mx-auto mt-12 grid max-w-[820px] grid-cols-2 gap-3 sm:grid-cols-4">
+    <div class="tile-thick px-4 py-5 text-center">
+      <div class="text-[13px] text-sec">Поставщик ликвидности</div>
+      <div class="mt-1 font-mono text-[12px] text-muted">0 мс</div>
     </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="border-y border-white/5 py-12">
-    <div class="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div>
-        <div class="text-2xl font-bold text-green-400">от $1 000</div>
-        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">минимальный убыток</div>
-      </div>
-      <div>
-        <div class="text-2xl font-bold">60 / 40</div>
-        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">разделение</div>
-      </div>
-      <div>
-        <div class="text-2xl font-bold">0$</div>
-        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">ваших вложений</div>
-      </div>
-      <div>
-        <div class="text-2xl font-bold">2019</div>
-        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">год начала</div>
-      </div>
+    <div class="tile-thick px-4 py-5 text-center">
+      <div class="text-[13px] text-sec">Сервер брокера</div>
+      <div class="mt-1 font-mono text-[12px] text-muted">+46 мс</div>
     </div>
-  </section>
-
-  <!-- How it works -->
-  <section id="how" class="py-28 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">Как это работает</h2>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
-          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">01</div>
-          <h3 class="font-semibold mb-2">Вы пишете</h3>
-          <p class="text-white/35 text-sm leading-relaxed">Присылаете скрины статистики и сумму убытка</p>
-        </div>
-        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
-          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">02</div>
-          <h3 class="font-semibold mb-2">Согласовываем</h3>
-          <p class="text-white/35 text-sm leading-relaxed">Условия 60/40 фиксируем в договоре</p>
-        </div>
-        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
-          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">03</div>
-          <h3 class="font-semibold mb-2">Мы работаем</h3>
-          <p class="text-white/35 text-sm leading-relaxed">Сами пополняем и выводим аккаунт в плюс</p>
-        </div>
-        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
-          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">04</div>
-          <h3 class="font-semibold mb-2">Возвращаем</h3>
-          <p class="text-white/35 text-sm leading-relaxed">После результата отдаём полный доступ</p>
-        </div>
-      </div>
+    <div class="tile-thick px-4 py-5 text-center">
+      <div class="text-[13px] text-sec">Обработка данных</div>
+      <div class="mt-1 font-mono text-[12px] text-muted">+24 мс</div>
     </div>
-  </section>
-
-  <!-- Platforms -->
-  <section id="platforms" class="py-20 px-4 border-t border-white/5">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-10 tracking-tight">Платформы</h2>
-      <div class="flex flex-wrap justify-center gap-2.5">
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Pocket Option</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Quotex</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">IQ Option</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Olymp Trade</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Binolla</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Binomo</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Expert Option</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">MEXC</span>
-        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">BingX</span>
-      </div>
+    <div class="tile-thick px-4 py-5 text-center ring-1 ring-inset ring-[rgba(0,255,136,0.35)]">
+      <div class="text-[13px] text-accent">Ваш терминал</div>
+      <div class="mt-1 font-mono text-[12px] text-accent">Итого +81 мс</div>
     </div>
-  </section>
+  </div>
 
-  <!-- FAQ -->
-  <section id="faq" class="py-24 px-4">
-    <div class="max-w-xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12 tracking-tight">Вопросы</h2>
+  <p class="mx-auto mt-14 max-w-[1000px] text-center text-[calc(clamp(25px,2.6vw,40px))] leading-[1.18] tracking-[-0.015em] text-pretty">
+    Мы получаем поток данных <span class="text-accent">напрямую,</span> без обработки и без задержки. Алгоритм сравнивает его с ценой брокера и находит окно опережения.
+  </p>
+  <p class="mx-auto mt-14 max-w-[1000px] text-center text-[calc(clamp(25px,2.6vw,40px))] leading-[1.18] tracking-[-0.015em] text-pretty">
+    Когда цена у брокера меняется, <span class="text-accent">наш ордер уже стоит.</span> Никаких эмоций, только данные и скорость.
+  </p>
 
-      <div class="space-y-2.5">
-        **Summary:**
-
-            Какой минимальный убыток?
-            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
-          
-          <p class="px-5 pb-4 text-white/40 text-sm">От $1 000. Лучше от $2 000.</p>
-
-        **Summary:**
-
-            Нужно ли мне что-то вносить?
-            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
-          
-          <p class="px-5 pb-4 text-white/40 text-sm">Нет. Все расходы берём на себя.</p>
-
-        **Summary:**
-
-            Как делится прибыль?
-            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
-          
-          <p class="px-5 pb-4 text-white/40 text-sm">Обычно 60% нам / 40% вам. Фиксируем в договоре.</p>
-
-        **Summary:**
-
-            Когда возвращаете доступ?
-            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
-          
-          <p class="px-5 pb-4 text-white/40 text-sm">Сразу после полного восстановления и вывода прибыли.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="py-28 px-4 text-center">
-    <h2 class="text-4xl sm:text-5xl font-bold mb-6 tracking-tight leading-tight">
-      Готовы восстановить<br>
-      <span class="text-green-400">убытки?</span>
+  <div class="mt-20 text-center">
+    <h2 class="text-[calc(clamp(50px,6vw,92px))] font-light leading-none tracking-[-0.025em]">
+      Это и есть <span class="text-accent">OnlyProfit.</span>
     </h2>
-    <p class="text-white/35 mb-10">Напишите — оценим аккаунт и предложим условия</p>
-    
-    <a href="https://t.me/BinaryManager" 
-       class="inline-block bg-green-500 hover:bg-green-400 text-black font-semibold px-11 py-3.5 rounded-full transition green-glow">
-      @BinaryManager
-    </a>
-    
-    <p class="mt-7 text-sm text-white/25">
-      Канал → <a href="https://t.me/LossRecoveryHub" class="text-green-400/60 hover:text-green-400">t.me/LossRecoveryHub</a>
-    </p>
-  </section>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a href="#products" class="group inline-flex items-center gap-2 rounded-full border border-white/16 px-8 py-4 text-[calc(clamp(20px,1.6vw,24px))] font-semibold transition hover:border-white/30">
+        <span><span class="text-ink">Only</span><span class="text-forex">Forex</span></span>
+        <span class="inline-block text-forex transition-transform duration-500 group-hover:translate-x-1">→</span>
+      </a>
+      <a href="#products" class="group inline-flex items-center gap-2 rounded-full border border-white/16 px-8 py-4 text-[calc(clamp(20px,1.6vw,24px))] font-semibold transition hover:border-white/30">
+        <span><span class="text-ink">Only</span><span class="text-accent">Binary</span></span>
+        <span class="inline-block text-accent transition-transform duration-500 group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+    <p class="mt-8 text-[15px] text-muted">Латентный арбитраж с 2023 года</p>
+  </div>
+</section>
 
-  <footer class="border-t border-white/5 py-8 text-center text-white/20 text-xs">
-    SKh | Loss Recovery Hub · 2019–2026
-  </footer>
+<div class="mx-auto h-px max-w-[1100px] bg-white/8"></div>
 
-</body>
-</html>
+<!-- RESULTS -->
+<section id="results" class="reveal mx-auto max-w-site scroll-mt-20 px-[clamp(20px,4vw,80px)] pb-12 pt-20">
+  <h2 class="mb-5 text-[calc(clamp(32px,4vw,50px))] font-light leading-[1.08]">
+    Верифицировано на <span class="font-normal text-accent">Myfxbook</span>
+  </h2>
+  <p class="mb-11 max-w-[760px] text-[16px] leading-relaxed text-sec">
+    Myfxbook сверяет историю сделок с данными брокера. Пополнения, выводы, прибыль и просадка — всё открыто для вашей проверки ещё до регистрации и покупки.
+  </p>
+
+  <div class="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_300px] lg:gap-8">
+    <div class="card-thick p-6 md:p-9">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <span id="bigLabel" class="font-mono text-[13px] text-ink">Live 48</span>
+        <span class="text-[13px] text-muted">Полный отчёт на Myfxbook ↗</span>
+      </div>
+      <div class="mt-6 flex flex-wrap items-baseline gap-3">
+        <span id="bigValue" class="font-light leading-none tracking-[-0.03em] tabular-nums text-accent" style="font-size:clamp(48px,6.4vw,96px);text-shadow:0 0 38px rgba(0,255,136,0.3)">$2,905</span>
+        <span id="bigPct" class="font-light tabular-nums text-sec" style="font-size:clamp(18px,2vw,28px)">(+93.71%)</span>
+      </div>
+
+      <svg viewBox="0 0 600 240" preserveAspectRatio="none" class="mt-6 block h-[150px] w-full md:h-[210px]" aria-hidden="true">
+        <defs>
+          <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(0,255,136,0.22)" />
+            <stop offset="100%" stop-color="rgba(0,255,136,0)" />
+          </linearGradient>
+          <path id="linePath" d="M0,232 C28,228 44,214 68,209 C92,204 108,220 132,206 C156,192 172,168 198,166 C224,164 240,181 264,164 C288,147 304,127 330,130 C356,133 370,151 394,127 C418,103 434,92 458,89 C482,86 498,77 522,68 C546,59 574,50 600,36" />
+        </defs>
+        <use href="#linePath" fill="url(#fillGrad)" stroke="none" />
+        <use href="#linePath" fill="none" stroke="#00ff88" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      </svg>
+
+      <div class="mt-6 grid grid-cols-3 gap-x-6 gap-y-4 border-t border-white/8 pt-5">
+        <div>
+          <div class="mb-1.5 text-[12px] text-muted">p.factor</div>
+          <div id="bigPf" class="font-mono text-[17px] tabular-nums text-ink">37.42</div>
+        </div>
+        <div>
+          <div class="mb-1.5 text-[12px] text-muted">сделок</div>
+          <div id="bigTrades" class="font-mono text-[17px] tabular-nums text-ink">62</div>
+        </div>
+        <div>
+          <div class="mb-1.5 text-[12px] text-muted">просадка</div>
+          <div id="bigDd" class="font-mono text-[17px] tabular-nums text-ink">0.39%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile-thick mt-6 overflow-hidden lg:mt-0">
+      <div class="max-h-[300px] overflow-y-auto lg:max-h-none">
+        <button type="button" aria-pressed="true" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,0.05)]" data-name="Live 48" data-val="$2,905" data-pct="(+93.71%)" data-pf="37.42" data-trades="62" data-dd="0.39%">
+          <span class="acct-bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span>
+          <span class="acct-name font-mono text-[13px] text-sec">Live 48</span>
+          <span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="acct-val text-[14px] text-muted">$2,905</span><span class="text-[11px] text-muted">(+93.71%)</span></span>
+        </button>
+        <button type="button" aria-pressed="false" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,0.05)]" data-name="Live 42" data-val="$2,738" data-pct="(+91.27%)" data-pf="31.08" data-trades="58" data-dd="0.51%">
+          <span class="acct-bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span>
+          <span class="acct-name font-mono text-[13px] text-sec">Live 42</span>
+          <span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="acct-val text-[14px] tex
