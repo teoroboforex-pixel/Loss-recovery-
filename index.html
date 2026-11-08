@@ -1,3 +1,419 @@
+index.html  forex.html  binary.html  trial.html  guides.html
+articles.html  support.html  terms.html  privacy.html  404.html
+assets/site.css  assets/site.js  assets/hero.js
+README.md  .nojekyll
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200..800&family=Noto+Sans+Mono:wght@300..700&display=swap');
+
+:root{
+  --bg:#050507;--s1:#090a0d;--ink:#eeeef2;--reading:#d5d5e1;--sec:#b7b7c9;--muted:#9797ab;
+  --accent:#00ff88;--accent-rgb:0,255,136;--blue:#20baff;--line:#ffffff14;
+  --ease:cubic-bezier(.16,1,.3,1)
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Geologica',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.015;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px 256px}
+::selection{background:rgba(var(--accent-rgb),.18);color:var(--accent)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--sec);border-radius:2px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+img,svg,canvas{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:8px;z-index:99;background:var(--accent);color:var(--bg);
+  padding:10px 18px;border-radius:999px;font-weight:600}
+.skip:focus{left:16px}
+
+.mono{font-family:'Noto Sans Mono',monospace}
+.wrap{max-width:1500px;margin:0 auto;padding:0 clamp(20px,4vw,80px)}
+.narrow{max-width:800px;margin:0 auto;padding:0 clamp(20px,4vw,80px)}
+.sec{padding-block:clamp(56px,8vw,96px)}
+.sec-tight{padding-block:clamp(40px,5vw,64px)}
+.hr{height:1px;max-width:1100px;margin:0 auto;background:var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.h1{font-weight:300;line-height:1.02;letter-spacing:-.025em;font-size:clamp(30px,8.8vw,42px)}
+.h2{font-weight:300;line-height:1.08;font-size:clamp(28px,4vw,50px)}
+.h3{font-weight:300;line-height:1.05;letter-spacing:-.02em;font-size:clamp(28px,6vw,40px)}
+.lead{font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:var(--sec)}
+.body{font-size:16px;line-height:1.7;color:var(--reading)}
+.small{font-size:15px;line-height:1.65;color:var(--sec)}
+.cap{font-size:12px;color:var(--muted)}
+.accent{color:var(--accent)}.blue{color:var(--blue)}
+@media(min-width:768px){.h1{font-size:clamp(40px,min(4.6vw,8.2svh),120px)}}
+
+.glass{isolation:isolate;backdrop-filter:blur(32px) saturate(160%);
+  background:linear-gradient(120deg,#ffffff17,#ffffff05 40%,#ffffff0d),#0c0d12d1;
+  border:1px solid #ffffff24;box-shadow:inset 0 1px #ffffff38,0 18px 50px #0000008c}
+.card{background:linear-gradient(#14151b,#0d0e13);border:1px solid #ffffff24;border-radius:20px;
+  box-shadow:inset 0 1px #ffffff24,1px 1px #1a1b22,2px 2px #17181f,3px 3px #15161c,4px 4px #131419,
+  5px 5px #111217,6px 6px #0f1015,7px 7px #0d0e12,8px 8px #0b0c10,16px 22px 34px #000c}
+.tile{background:linear-gradient(#14151b,#0d0e13);border:1px solid #ffffff24;border-radius:16px;
+  box-shadow:inset 0 1px #ffffff24,1px 1px #1a1b22,2px 2px #17181f,3px 3px #141519,4px 4px #111217,5px 5px #0e0f13,10px 14px 24px #000c}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;
+  padding:14px 32px;font-size:16px;font-weight:600;background:var(--accent);color:var(--bg);
+  border:0;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(var(--accent-rgb),.28)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid #ffffff29;font-weight:500}
+.btn.ghost:hover{border-color:#ffffff4d;box-shadow:none}
+.btn.blue{background:var(--blue)}
+.btn.sm{padding:10px 20px;font-size:15px}
+.link-arrow{display:inline-flex;align-items:center;gap:12px;font-weight:500}
+.link-arrow::before{content:"";display:block;width:32px;height:1px;background:currentColor;transition:width .5s var(--ease)}
+.link-arrow:hover::before{width:56px}
+
+.nav{position:fixed;inset-inline:0;top:12px;z-index:50;display:flex;justify-content:center;padding:0 12px}
+@media(min-width:768px){.nav{top:16px;padding:0 24px}}
+.nav-in{width:100%;max-width:1240px;border-radius:26px;display:flex;flex-direction:column}
+.nav-row{display:flex;height:56px;align-items:center;justify-content:space-between;padding:0 8px 0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:.02em}
+.brand b{color:#fff;font-weight:600}.brand i{color:var(--accent);font-style:normal;font-weight:600}
+.brand svg{height:22px;width:auto;fill:#fff}
+.nav-links{display:none;align-items:center;gap:24px;font-size:15px}
+@media(min-width:1024px){.nav-links{display:flex}}
+.nav-links a{color:var(--reading);transition:color .2s}
+.nav-links a:hover,.nav-links a[aria-current]{color:#fff}
+.sep{width:1px;height:14px;background:#ffffff1f}
+.sep.tall{display:none;height:20px}
+@media(min-width:1024px){.sep.tall{display:block}}
+.lang{display:flex;gap:2px;padding:2px;border:1px solid #ffffff1f;border-radius:999px}
+.lang button{border:0;background:transparent;color:var(--sec);font:600 11px/1 'Geologica',sans-serif;
+  padding:5px 10px;border-radius:999px;cursor:pointer;letter-spacing:.04em}
+.lang button[aria-pressed="true"]{background:#ffffff24;color:#fff}
+.burger{display:flex;width:36px;height:36px;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;border:1px solid #ffffff1f;border-radius:999px;background:#ffffff0f;cursor:pointer}
+.burger span{display:block;height:1px;width:16px;background:#fff;transition:transform .3s,opacity .3s}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3px) rotate(-45deg)}
+@media(min-width:1024px){.burger{display:none}}
+.login-btn{display:none;padding:8px 20px;font-size:15px;border-radius:999px;
+  background:var(--accent);color:var(--bg);font-weight:600}
+@media(min-width:1024px){.login-btn{display:inline-flex}}
+#mobileMenu{display:none;border-top:1px solid #ffffff14;padding:14px 20px 18px}
+#mobileMenu.open{display:block}
+@media(min-width:1024px){#mobileMenu.open{display:none}}
+#mobileMenu a{display:block;padding:7px 0;font-size:16px}
+
+.track{position:relative;height:420svh}
+.pin{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--bg)}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-copy,.step{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:0 clamp(20px,5vw,80px);will-change:opacity,transform}
+.hero-copy{z-index:3}.step{z-index:2;pointer-events:none}
+.step.final{pointer-events:auto}
+.step p{max-width:1100px;font-size:clamp(25px,2.6vw,40px);line-height:1.18;letter-spacing:-.015em}
+.word{display:inline-block;opacity:0;transform:translateY(.5em)}
+.word.in{animation:wi .9s var(--ease) forwards}
+@keyframes wi{to{opacity:1;transform:none}}
+#labels{position:absolute;inset:0;z-index:2;pointer-events:none}
+.lbl{position:absolute;left:0;top:0;white-space:nowrap;font-size:clamp(12px,.95vw,17px);
+  text-shadow:0 1px 12px #050507e6;opacity:0;will-change:transform,opacity}
+.veil{position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:linear-gradient(0deg,#050507e8 0%,#05050700 32% 68%,#050507cc 100%)}
+
+.phero{position:relative;min-height:min(78svh,760px);display:flex;flex-direction:column;
+  justify-content:center;overflow:hidden;padding:clamp(120px,18svh,180px) 0 clamp(56px,9svh,96px)}
+.phero #gl{opacity:.55}
+.phero .fade{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(0deg,#050507 0%,#05050700 42% 74%,#050507cc 100%)}
+.phero .wrap{position:relative;z-index:3}
+.glow{position:absolute;width:900px;height:900px;left:50%;top:-58%;transform:translateX(-50%);
+  filter:blur(80px);border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(var(--accent-rgb),.1),rgba(var(--accent-rgb),.02) 45%,transparent 70%)}
+.glow.blue{background:radial-gradient(circle,rgba(32,186,255,.12),rgba(32,186,255,.02) 45%,transparent 70%)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+.g2{display:grid;gap:24px}
+.g3{display:grid;gap:24px}
+@media(min-width:768px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+.sec-head{max-width:780px;margin-bottom:clamp(32px,4vw,48px)}
+.sec-head .h2{margin-bottom:16px}
+.feat{padding:26px}
+.feat h3{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.feat .n{color:var(--accent);font-size:12px;letter-spacing:.14em;margin-bottom:14px;display:block}
+
+.prose{font-size:16px;line-height:1.75;color:var(--reading)}
+.prose h2{font-size:24px;font-weight:600;color:var(--ink);margin:40px 0 12px}
+.prose h3{font-size:18px;font-weight:600;color:var(--ink);margin:28px 0 10px}
+.prose p{margin-bottom:16px}
+.prose ul{margin-bottom:16px;display:grid;gap:8px}
+.prose ul li{padding-left:18px;position:relative}
+.prose ul li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;
+  border-radius:50%;background:var(--accent)}
+.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+.acc{border-bottom:1px solid var(--line)}
+.acc summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;
+  list-style:none;padding:18px 0;font-size:17px;font-weight:500}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary i{color:var(--accent);font-style:normal;font-size:20px;transition:transform .3s}
+.acc[open] summary i{transform:rotate(45deg)}
+.acc p{padding-bottom:18px;font-size:15px;line-height:1.7;color:var(--sec);max-width:660px}
+
+.form{display:grid;gap:18px}
+.field{display:grid;gap:7px}
+.field label{font-size:13px;color:var(--sec);font-weight:500}
+.field input,.field textarea,.field select{width:100%;background:#0c0d12;border:1px solid #ffffff1f;
+  border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);outline:0;
+  box-shadow:0 0 0 3px rgba(var(--accent-rgb),.14)}
+.field textarea{min-height:150px;resize:vertical}
+.field .hint{font-size:12px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.note svg{flex:0 0 auto;margin-top:2px;stroke:var(--accent)}
+
+.price{padding:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;gap:28px;
+  justify-content:space-between;align-items:flex-end}
+.price .sum{font-family:'Noto Sans Mono',monospace;font-size:clamp(38px,6vw,60px);font-weight:300}
+
+.acct{position:relative;display:flex;width:100%;align-items:baseline;justify-content:space-between;
+  gap:12px;padding:15px 20px;border:0;border-bottom:1px solid var(--line);background:transparent;
+  text-align:left;cursor:pointer;transition:background .2s}
+.acct:hover{background:rgba(var(--accent-rgb),.05)}
+.acct[aria-pressed="true"]{background:rgba(var(--accent-rgb),.07)}
+.acct .bar{position:absolute;inset-block:0;left:0;width:2px;background:transparent}
+.acct[aria-pressed="true"] .bar{background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.acct .nm{font-family:'Noto Sans Mono',monospace;font-size:13px;color:var(--sec)}
+.acct .vl{font-family:'Noto Sans Mono',monospace;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.acct[aria-pressed="true"] .nm{color:var(--ink)}
+.acct[aria-pressed="true"] .vl{color:var(--accent)}
+.big{font-weight:300;line-height:.9;letter-spacing:-.03em;color:var(--accent);
+  font-variant-numeric:tabular-nums;font-size:clamp(48px,6.4vw,96px);text-shadow:0 0 38px rgba(var(--accent-rgb),.3)}
+
+.foot{border-top:1px solid var(--line);background:var(--s1)}
+.foot-in{display:flex;flex-direction:column;gap:12px;padding-block:16px}
+@media(min-width:1024px){.foot-in{flex-direction:row;align-items:center;justify-content:space-between}}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+.foot nav a{font-size:12px;color:var(--sec);transition:color .2s}
+.foot nav a:hover{color:var(--accent)}
+.copy{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.chat{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));right:16px;z-index:55;
+  display:flex;width:56px;height:56px;align-items:center;justify-content:center;border-radius:999px;
+  color:var(--accent);transition:color .2s}
+.chat:hover{color:var(--ink)}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal,.word{opacity:1;transform:none;animation:none;transition:none}
+  .track{height:auto}.pin{position:relative;height:100svh}
+  .btn:hover,.link-arrow:hover::before{transform:none;width:32px}
+}
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+const canvas = document.getElementById('gl');
+if (!canvas) throw 0;
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mode = canvas.dataset.scene || 'mono';
+const track = document.getElementById('top');
+const heroCopy = document.getElementById('heroCopy');
+const steps = [...document.querySelectorAll('.step')];
+const labelsBox = document.getElementById('labels');
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch {
+  canvas.style.background = 'radial-gradient(circle at 50% 0%, rgba(0,255,136,.12), transparent 60%)';
+  throw 0;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setClearColor(0x050507, 1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x050507, .014);
+const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, .1, 400);
+camera.position.set(0, 7, 16);
+
+const GREEN = 0x00ff88, RED = 0xff3050;
+
+const grid = new THREE.BufferGeometry();
+const gp = [];
+for (let x = -40; x <= 40; x += 4) gp.push(x, -4, 10, x, -4, -150);
+for (let z = 10; z >= -150; z -= 6) gp.push(-40, -4, z, 40, -4, z);
+grid.setAttribute('position', new THREE.Float32BufferAttribute(gp, 3));
+scene.add(new THREE.LineSegments(grid, new THREE.LineBasicMaterial({
+  color: GREEN, transparent: true, opacity: .12, blending: THREE.AdditiveBlending, depthWrite: false
+})));
+
+const flow = [];
+for (let z = 8; z > -150; z -= 2) flow.push(new THREE.Vector3(Math.sin(z * .08) * 5, Math.sin(z * .07) * 3 + 1, z));
+const line = new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints(new THREE.CatmullRomCurve3(flow).getPoints(700)),
+  new THREE.LineBasicMaterial({ color: GREEN, transparent: true, opacity: .4, blending: THREE.AdditiveBlending })
+);
+scene.add(line);
+
+if (mode === 'candles') {
+  const COLS = innerWidth < 768 ? 24 : 46, ROWS = 34, N = COLS * ROWS;
+  const body = new THREE.InstancedMesh(new THREE.BoxGeometry(.55, 1, .55), new THREE.MeshBasicMaterial(), N);
+  const wick = new THREE.InstancedMesh(new THREE.BoxGeometry(.09, 1, .09), new THREE.MeshBasicMaterial(), N);
+  const m4 = new THREE.Matrix4(), col = new THREE.Color();
+  let i = 0;
+  for (let c = 0; c < COLS; c++) {
+    let y = (Math.random() - .5) * 4;
+    for (let r = 0; r < ROWS; r++) {
+      y = Math.max(-3.4, Math.min(3.4, (y + (Math.random() - .5) * 1.5) * .97));
+      const z = 8 - r * 4.6;
+      const x = (c - COLS / 2) * 1.9 + (Math.random() - .5) * .3;
+      const up = Math.random() > .38;
+      const h = .35 + Math.random() * 2.1;
+      m4.makeScale(1, h, 1); m4.setPosition(x, y, z); body.setMatrixAt(i, m4);
+      col.setHex(up ? GREEN : RED).multiplyScalar(up ? 1 : .85);
+      body.setColorAt(i, col);
+      m4.makeScale(1, h + Math.random() * 1.4, 1); m4.setPosition(x, y, z); wick.setMatrixAt(i, m4);
+      wick.setColorAt(i, col);
+      i++;
+    }
+  }
+  body.instanceMatrix.needsUpdate = true;
+  wick.instanceMatrix.needsUpdate = true;
+  scene.add(body, wick);
+}
+
+if (mode === 'grid') {
+  const geo = new THREE.BoxGeometry(.7, 1, .7);
+  for (let n = 0; n < 120; n++) {
+    const h = .4 + Math.random() * 4;
+    const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+      color: Math.random() > .4 ? GREEN : RED, transparent: true, opacity: .5
+    }));
+    m.scale.y = h;
+    m.position.set((Math.random() - .5) * 60, -4 + h / 2, -Math.random() * 130);
+    scene.add(m);
+  }
+}
+
+if (mode === 'candles' && labelsBox) {
+  const LABELS = [
+    { t: 'Новая цена', p: new THREE.Vector3(6, 3.2, -16) },
+    { t: 'Поставщик ликвидности', p: new THREE.Vector3(-8, 2.2, -30) },
+    { t: 'Цена брокера', p: new THREE.Vector3(9, -1.8, -44) },
+    { t: 'Наш поток', p: new THREE.Vector3(-9, -1.2, -58), a: true },
+    { t: 'Сервер брокера · +46 мс', p: new THREE.Vector3(7, 3.4, -72) },
+    { t: 'Наш ордер уже стоит', p: new THREE.Vector3(-6, 2.8, -88), a: true }
+  ];
+  LABELS.forEach(l => {
+    const el = document.createElement('div');
+    el.className = 'lbl' + (l.a ? ' accent' : '');
+    el.textContent = l.t;
+    labelsBox.appendChild(el);
+    l.el = el;
+  });
+  window.__labels = LABELS;
+}
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .8, .7, .2);
+composer.addPass(bloom);
+
+let target = 0, cur = 0, running = true;
+const hasTrack = !!track && !!heroCopy && steps.length > 0;
+
+const readProgress = () => {
+  if (!hasTrack) return 0;
+  const h = track.offsetHeight - innerHeight;
+  return h > 0 ? Math.min(Math.max(scrollY / h, 0), 1) : 0;
+};
+if (hasTrack) {
+  addEventListener('scroll', () => { target = readProgress(); }, { passive: true });
+  target = cur = readProgress();
+}
+
+const band = (p, a, b, c, d) => {
+  if (p < a || p > d) return 0;
+  if (p < b) return (p - a) / (b - a);
+  if (p > c) return 1 - (p - c) / (d - c);
+  return 1;
+};
+
+const RANGES = hasTrack ? [
+  { el: heroCopy, a: 0, b: 0, c: .17, d: .26 },
+  { el: steps[0], a: .24, b: .30, c: .37, d: .43 },
+  { el: steps[1], a: .41, b: .47, c: .54, d: .60 },
+  { el: steps[2], a: .58, b: .64, c: .71, d: .77 },
+  { el: steps[3], a: .75, b: .81, c: .88, d: .94 },
+  { el: steps[4], a: .90, b: .96, c: 1, d: 1 }
+].filter(r => r.el) : [];
+
+const clock = new THREE.Clock();
+const v3 = new THREE.Vector3();
+
+function frame() {
+  if (!running) return;
+  requestAnimationFrame(frame);
+
+  const t = clock.getElapsedTime();
+  if (hasTrack) {
+    cur += (target - cur) * .08;
+    const p = cur;
+    camera.position.z = 16 - p * 110;
+    camera.position.x = Math.sin(p * Math.PI * 1.6) * 3;
+    camera.position.y = 7 - p * 2 + Math.sin(p * Math.PI * 2) * .8;
+    camera.rotation.z = Math.sin(p * Math.PI) * .04;
+    camera.lookAt(0, 1, camera.position.z - 34);
+    bloom.strength = .55 + p * .45;
+    line.material.opacity = .18 + p * .5;
+
+    RANGES.forEach(r => {
+      const o = band(p, r.a, r.b, r.c, r.d);
+      r.el.style.opacity = o.toFixed(3);
+      r.el.style.transform = `translateY(${(1 - o) * 26}px) scale(${.955 + o * .045})`;
+    });
+
+    const la = band(p, .05, .14, .82, .92);
+    (window.__labels || []).forEach(l => {
+      v3.copy(l.p).project(camera);
+      l.el.style.transform = `translate(${(v3.x * .5 + .5) * innerWidth}px,${(-v3.y * .5 + .5) * innerHeight}px) translate(-50%,-50%)`;
+      l.el.style.opacity = v3.z > 1 ? 0 : la.toFixed(3);
+    });
+  } else {
+    camera.position.x = Math.sin(t * .12) * 3.5;
+    camera.position.y = 6 + Math.sin(t * .17) * 1.1;
+    camera.lookAt(0, 1, camera.position.z - 34);
+    bloom.strength = .5;
+  }
+
+  composer.render();
+}
+
+function resize() {
+  renderer.setSize(innerWidth, innerHeight, false);
+  composer.setSize(innerWidth, innerHeight);
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+addEventListener('orientationchange', resize);
+resize();
+
+canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); running = false; });
+canvas.addEventListener('webglcontextrestored', () => { running = true; frame(); });
+
+document.querySelectorAll('.word').forEach((w, i) => setTimeout(() => w.classList.add('in'), 120 + i * 70));
+
+document.addEventListener('visibilitychange', () => {
+  running = !document.hidden;
+  if (running) { clock.getDelta(); frame(); }
+});
+
+if (reduce) {
+  RANGES.forEach(r => r.el.style.opacity = r.el === heroCopy ? 1 : 0);
+  composer.render();
+} else {
+  frame();
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,233 +421,546 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#050507" />
 <title>OnlyProfit — программы латентного арбитража</title>
-<meta name="description" content="Инфраструктура латентного арбитража. Автоматическое исполнение в окне задержки котировок." />
+<meta name="description" content="OnlyForex и OnlyBinary опережают брокера и открывают сделку, пока у него ещё старая цена. Торгуют автоматически, есть бесплатный тестовый ключ." />
+<link rel="canonical" href="index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="OnlyProfit — программы латентного арбитража" />
+<meta property="og:description" content="Инфраструктура латентного арбитража с 2023 года. Автоматическое исполнение в окне задержки котировок." />
+<meta property="og:locale" content="ru_RU" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23050507'/%3E%3Ctext x='50' y='68' font-size='54' font-family='sans-serif' font-weight='bold' fill='%2300ff88' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: { extend: {
-      colors: { bg:'#050507', s1:'#090a0d', ink:'#eeeef2', reading:'#d5d5e1', sec:'#b7b7c9', muted:'#9797ab', accent:'#00ff88', forex:'#20baff' },
-      fontFamily: { sans:['Geologica','system-ui','sans-serif'], mono:['"Noto Sans Mono"','monospace'] },
-      maxWidth: { site:'1500px' }
-    } }
-  }
-</script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200..800&family=Noto+Sans+Mono:wght@300..700&display=swap');
-
-  body { font-family:'Geologica',system-ui,sans-serif; background:#050507; color:#eeeef2; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-  ::selection { background:rgba(0,255,136,.18); color:#00ff88; }
-  ::-webkit-scrollbar { width:4px; }
-  ::-webkit-scrollbar-track { background:#050507; }
-  ::-webkit-scrollbar-thumb { background:#b7b7c9; border-radius:2px; }
-
-  body::before {
-    content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.015;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size:256px 256px;
-  }
-
-  .glass-liquid { isolation:isolate; backdrop-filter:blur(32px) saturate(160%);
-    background:linear-gradient(120deg,#ffffff17,#ffffff05 40%,#ffffff0d),#0c0d12d1;
-    border:1px solid #ffffff24; box-shadow:inset 0 1px #ffffff38,0 18px 50px #0000008c; }
-
-  .card-thick { background:linear-gradient(#14151b,#0d0e13); border:1px solid #ffffff24; border-radius:20px;
-    box-shadow:inset 0 1px #ffffff24,1px 1px #1a1b22,2px 2px #17181f,3px 3px #15161c,4px 4px #131419,
-    5px 5px #111217,6px 6px #0f1015,7px 7px #0d0e12,8px 8px #0b0c10,16px 22px 34px #000c; }
-
-  .tile-thick { background:linear-gradient(#14151b,#0d0e13); border:1px solid #ffffff24; border-radius:16px;
-    box-shadow:inset 0 1px #ffffff24,1px 1px #1a1b22,2px 2px #17181f,3px 3px #141519,4px 4px #111217,5px 5px #0e0f13,10px 14px 24px #000c; }
-
-  /* ---------- HERO / SCROLL TRACK ---------- */
-  .track { position:relative; height:420svh; }
-  .pin { position:sticky; top:0; height:100svh; overflow:hidden; background:#050507; }
-  #gl { position:absolute; inset:0; width:100%; height:100%; display:block; z-index:1; }
-
-  .hero-copy, .step { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
-    justify-content:center; text-align:center; padding:0 clamp(20px,5vw,80px); will-change:opacity,transform; }
-  .hero-copy { z-index:3; }
-  .step { z-index:2; pointer-events:none; }
-  .step[data-step="5"] { pointer-events:auto; }
-
-  .word { display:inline-block; opacity:0; transform:translateY(.5em); }
-  .word.in { animation:wordIn .9s cubic-bezier(.16,1,.3,1) forwards; }
-  @keyframes wordIn { to { opacity:1; transform:none; } }
-
-  #labels { position:absolute; inset:0; z-index:2; pointer-events:none; }
-  .lbl { position:absolute; left:0; top:0; white-space:nowrap; font-size:clamp(12px,.95vw,17px);
-    text-shadow:0 1px 12px #050507e6; opacity:0; will-change:transform,opacity; }
-  .lbl .dim { color:#b7b7c9; }
-
-  .veil { position:absolute; inset:0; z-index:4; pointer-events:none;
-    background:linear-gradient(0deg,#050507e8 0%,#05050700 32% 68%,#050507cc 100%); }
-
-  .reveal { opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1); }
-  .reveal.in { opacity:1; transform:none; }
-
-  .acct[aria-pressed="true"] { background:rgba(0,255,136,.07); }
-  .acct[aria-pressed="true"] .bar { background:#00ff88; box-shadow:0 0 10px #00ff88; }
-  .acct[aria-pressed="true"] .nm { color:#eeeef2; }
-  .acct[aria-pressed="true"] .vl { color:#00ff88; }
-
-  @media (prefers-reduced-motion:reduce) {
-    .reveal { opacity:1; transform:none; transition:none; }
-    .word { opacity:1; transform:none; animation:none; }
-    .track { height:auto; }
-    .pin { position:relative; height:100svh; }
-  }
-</style>
+<link rel="stylesheet" href="assets/site.css" />
 </head>
-
 <body>
+<a href="#main" class="skip">К содержанию</a>
 
-<nav class="fixed inset-x-0 top-3 z-50 flex justify-center px-3 md:top-4 md:px-6">
-  <div class="glass-liquid flex w-full max-w-[1240px] flex-col rounded-[26px] md:rounded-[28px]">
-    <div class="flex h-14 items-center justify-between pl-5 pr-2 md:pl-6 md:pr-2.5">
-      <a href="#top" class="flex items-center gap-2.5">
-        <svg viewBox="0 0 100 86.43" height="22" fill="white"><defs><clipPath id="w1"><polygon points="-22.5,160.62 129.03,-98.28 -129.87,-249.81 -281.4,9.09"/></clipPath><clipPath id="g1"><polygon points="-15.6,164.67 135.93,-94.23 394.83,57.3 243.3,316.2"/></clipPath></defs><path clip-path="url(#w1)" d="M64.53,32.15A32.44,29.4 0 1 1 -0.35,32.15A32.44,29.4 0 1 1 64.53,32.15ZM50.12,32.19A17.75,18.28 0 1 0 14.62,32.19A17.75,18.28 0 1 0 50.12,32.19Z"/><path clip-path="url(#g1)" fill="#00ff88" d="M45.6,70.86L45.6,55.3 45.6,54.31C46.55,53.77 48.53,50.42 50.63,46.86C52.72,43.3 55.1,39.29 55.91,37.94C57.26,35.69 58.77,33.14 62.75,26.44C63.57,25.06 65.06,22.58 66.06,20.92C67.06,19.26 69.17,15.73 70.77,13.07C72.36,10.41 73.9,7.83 74.19,7.35C74.49,6.87 75.56,5.07 76.58,3.36C78.4,0.3 79.01,-0.62 78.04,1.16C77.76,1.66 75.87,5.3 73.84,9.23C69,18.59 68.59,19.38 67.64,21.18C67.2,22.02 66.83,22.77 66.83,22.85C66.83,22.95 68.16,22.99 71.78,22.99C79.13,22.99 81.47,23.27 85.61,24.65C93.21,27.18 98.24,32.91 99.64,40.67C99.99,42.61 100.03,46.25 99.71,48.3C99.17,51.84 98.03,54.69 96.13,57.29C95.44,58.22 93.63,60.11 92.65,60.92C91.65,61.74 89.64,62.98 88.27,63.63C85.32,65.02 83.42,65.56 79.65,66.11C77.97,66.35 77.12,66.37 69.06,66.45L60.18,66.45 60.18,76.46L60.18,86.4 52.95,86.4L45.6,86.4 45.6,70.86Z M76.6,54.78C78.68,54.4 80.47,53.65 81.79,52.6C84.15,50.72 85.33,48.03 85.32,44.52C85.3,40.11 83.44,36.91 79.94,35.29C77.51,34.16 76.09,34.02 67.21,34.07L60.18,34.11 60.18,44.57L60.18,55.03 67.75,55.03C74.65,55.03 75.31,55.01 76.6,54.78Z"/></svg>
-        <span class="text-[15px] font-semibold tracking-wide"><span class="text-white">Only</span><span class="text-accent">Profit</span></span>
-      </a>
-      <div class="flex items-center gap-4">
-        <div class="hidden items-center gap-6 lg:flex">
-          <a href="#products" class="text-[15px] font-semibold"><span class="text-reading hover:text-white transition">Only</span><span class="text-forex">Forex</span></a>
-          <a href="#products" class="text-[15px] font-semibold"><span class="text-reading hover:text-white transition">Only</span><span class="text-accent">Binary</span></a>
-          <div class="h-3.5 w-px bg-white/12"></div>
-          <a href="#results" class="text-[15px] font-medium text-reading hover:text-white transition">Статьи</a>
-          <a href="#kit" class="text-[15px] font-medium text-reading hover:text-white transition">Обучение</a>
-        </div>
-        <div class="hidden h-5 w-px bg-white/12 lg:block"></div>
-        <div class="flex items-center gap-0.5 rounded-full border border-white/12 p-0.5">
-          <button type="button" class="rounded-full px-2.5 py-1 text-[11px] font-semibold text-sec hover:text-white transition">EN</button>
-          <button type="button" class="rounded-full bg-white/14 px-2.5 py-1 text-[11px] font-semibold text-white">RU</button>
-        </div>
-        <a href="#start" class="hidden rounded-full bg-accent px-5 py-2 text-[15px] font-semibold text-bg transition hover:shadow-[0_0_20px_rgba(0,255,136,.25)] lg:inline-flex">Войти</a>
-        <button id="burger" type="button" aria-label="Меню" aria-expanded="false" class="flex size-9 flex-col items-center justify-center gap-[5px] rounded-full border border-white/12 bg-white/6 lg:hidden">
-          <span class="block h-px w-4 bg-white"></span><span class="block h-px w-4 bg-white"></span>
-        </button>
-      </div>
+<nav class="nav" aria-label="Основная навигация"><div class="nav-in glass">
+  <div class="nav-row">
+    <a href="index.html" class="brand" aria-label="OnlyProfit — на главную">
+      <svg viewBox="0 0 100 86.43" aria-hidden="true"><path d="M64.53,32.15A32.44,29.4 0 1 1 -0.35,32.15A32.44,29.4 0 1 1 64.53,32.15ZM50.12,32.19A17.75,18.28 0 1 0 14.62,32.19A17.75,18.28 0 1 0 50.12,32.19Z"/></svg>
+      <span><b>Only</b><i>Profit</i></span>
+    </a>
+    <div class="nav-links">
+      <a href="forex.html"><span style="color:var(--muted)">Only</span><span class="blue">Forex</span></a>
+      <a href="binary.html"><span style="color:var(--muted)">Only</span><span class="accent">Binary</span></a>
+      <span class="sep"></span>
+      <a href="articles.html">Статьи</a>
+      <a href="guides.html">Обучение</a>
     </div>
-    <div id="mobileMenu" class="hidden border-t border-white/8 px-5 pb-4 pt-4 lg:hidden">
-      <div class="flex flex-col gap-1">
-        <a href="#products" class="py-1.5 text-[19px] font-semibold">Only<span class="text-forex">Forex</span></a>
-        <a href="#products" class="py-1.5 text-[19px] font-semibold">Only<span class="text-accent">Binary</span></a>
-        <a href="#results" class="py-1.5 text-[15px]">Доказательства</a>
-        <a href="#start" class="mt-2 rounded-full bg-accent py-2.5 text-center text-[15px] font-semibold text-bg">Тестовый ключ</a>
-      </div>
+    <span class="sep tall"></span>
+    <div class="lang"><button aria-pressed="false">EN</button><button aria-pressed="true">RU</button></div>
+    <a href="trial.html" class="login-btn">Войти</a>
+    <button id="burger" class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="forex.html">Only<span class="blue">Forex</span></a>
+    <a href="binary.html">Only<span class="accent">Binary</span></a>
+    <a href="articles.html">Статьи</a>
+    <a href="guides.html">Обучение</a>
+    <a href="trial.html">Тестовый ключ</a>
+    <a href="support.html">Поддержка</a>
+  </div>
+</div></nav>
+
+<main id="main">
+<section id="top" class="track"><div class="pin">
+  <canvas id="gl" data-scene="candles" aria-hidden="true"></canvas>
+  <div id="labels"></div>
+
+  <div class="hero-copy" id="heroCopy">
+    <h1 class="h1">
+      <span style="display:block"><span class="word">Рынок</span> <span class="word">движется.</span></span>
+      <span style="display:block"><span class="word">Брокер</span> <span class="word">отстаёт.</span></span>
+      <span style="display:block;font-weight:400" class="accent"><span class="word">Мы</span> <span class="word">исполняем.</span></span>
+    </h1>
+    <p class="lead" style="margin-top:32px;max-width:560px">
+      <strong style="color:var(--ink)">Инфраструктура латентного арбитража — с 2023 года.</strong><br />
+      Автоматическое исполнение в окне задержки котировок.
+    </p>
+    <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:24px;justify-content:center">
+      <a href="trial.html" class="btn">Начать</a>
+      <a href="#products" class="link-arrow">Продукты</a>
     </div>
   </div>
-</nav>
 
-<!-- ================= HERO TRACK ================= -->
-<section id="top" class="track">
-  <div class="pin">
-    <canvas id="gl"></canvas>
-    <div id="labels"></div>
+  <div class="step"><p>Что, если ваш ордер <span class="accent">уже стоит в рынке</span> за мгновение до того, как цена изменится у брокера?</p></div>
+  <div class="step"><p>Цена до брокера проходит длинный путь.<br />Каждый шаг — <span class="accent">потеря времени.</span></p></div>
+  <div class="step"><p>Мы получаем поток данных <span class="accent">напрямую,</span> без обработки и без задержки. Алгоритм находит окно опережения.</p></div>
+  <div class="step"><p>Когда цена у брокера меняется, <span class="accent">наш ордер уже стоит.</span> Только данные и скорость.</p></div>
+  <div class="step final"><div>
+    <h2 class="h2" style="font-size:clamp(48px,6vw,92px);line-height:1">Это и есть <span class="accent">OnlyProfit.</span></h2>
+    <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+      <a href="forex.html" class="btn ghost">Only<span class="blue">Forex</span> →</a>
+      <a href="binary.html" class="btn ghost">Only<span class="accent">Binary</span> →</a>
+    </div>
+    <p class="small" style="margin-top:32px;color:var(--muted)">Латентный арбитраж с 2023 года</p>
+  </div></div>
 
-    <div class="hero-copy" id="heroCopy">
-      <h1 class="font-light leading-[1.02] tracking-[-0.025em] text-[clamp(30px,8.8vw,42px)] md:text-[clamp(40px,min(4.6vw,8.2svh),120px)]">
-        <span class="block"><span class="word">Рынок</span> <span class="word">движется.</span></span>
-        <span class="block"><span class="word">Брокер</span> <span class="word">отстаёт.</span></span>
-        <span class="block font-normal text-accent"><span class="word">Мы</span> <span class="word">исполняем.</span></span>
-      </h1>
-      <p class="mt-8 max-w-[560px] text-[16px] leading-relaxed text-sec">
-        <strong class="font-semibold text-ink">Инфраструктура латентного арбитража — с 2023 года.</strong><br />
-        Автоматическое исполнение в окне задержки котировок.
-      </p>
-      <div class="mt-9 flex flex-wrap items-center justify-center gap-7">
-        <a href="#start" class="group inline-flex items-center rounded-full bg-accent px-8 py-3.5 text-[16px] font-semibold text-bg transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(0,255,136,.28)]">
-          Начать<svg class="ml-3 h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#products" class="group inline-flex items-center text-[16px] font-medium text-ink transition hover:text-accent">
-          <span class="mr-3 block h-px w-8 bg-current transition-all duration-500 group-hover:w-14"></span>Продукты
-        </a>
+  <div class="veil"></div>
+</div></section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec" id="results">
+  <div class="sec-head">
+    <h2 class="h2">Верифицировано на <span class="accent" style="font-weight:400">Myfxbook</span></h2>
+    <p class="body">Myfxbook сверяет историю сделок с данными брокера. Пополнения, выводы, прибыль и просадка — всё открыто для проверки ещё до регистрации.</p>
+  </div>
+  <div style="display:grid;gap:32px;grid-template-columns:1fr">
+    <div class="card" style="padding:clamp(20px,3vw,32px)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+        <span id="bigLabel" class="mono" style="font-size:13px">Live 48</span>
+        <a href="https://www.myfxbook.com/members/OnlyProfitio/" target="_blank" rel="noopener" class="cap">Полный отчёт на Myfxbook ↗</a>
+      </div>
+      <div style="margin-top:24px;display:flex;align-items:baseline;gap:12px">
+        <span id="bigValue" class="big">$2,905</span>
+        <span id="bigPct" style="font-size:clamp(18px,2vw,28px);color:var(--sec)">(+93.71%)</span>
+      </div>
+      <svg viewBox="0 0 600 240" preserveAspectRatio="none" style="margin-top:24px;height:180px;width:100%" aria-hidden="true">
+        <defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,255,136,.22)"/><stop offset="100%" stop-color="rgba(0,255,136,0)"/></linearGradient>
+        <path id="lp" d="M0,232 C28,228 44,214 68,209 C92,204 108,220 132,206 C156,192 172,168 198,166 C224,164 240,181 264,164 C288,147 304,127 330,130 C356,133 370,151 394,127 C418,103 434,92 458,89 C482,86 498,77 522,68 C546,59 574,50 600,36"/></defs>
+        <use href="#lp" fill="url(#fg)"/><use href="#lp" fill="none" stroke="#00ff88" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div style="margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;border-top:1px solid var(--line);padding-top:20px">
+        <div><div class="cap" style="margin-bottom:6px">p.factor</div><div id="bigPf" class="mono">37.42</div></div>
+        <div><div class="cap" style="margin-bottom:6px">сделок</div><div id="bigTrades" class="mono">62</div></div>
+        <div><div class="cap" style="margin-bottom:6px">просадка</div><div id="bigDd" class="mono">0.39%</div></div>
       </div>
     </div>
-
-    <div class="step" data-step="1">
-      <p class="max-w-[1100px] text-[clamp(25px,2.6vw,40px)] leading-[1.18] tracking-[-0.015em]">
-        Что, если ваш ордер <span class="text-accent">уже стоит в рынке</span> за мгновение до того, как цена изменится у брокера?
-      </p>
+    <div class="tile" style="overflow-y:auto;max-height:340px">
+      <button class="acct" aria-pressed="true" data-n="Live 48" data-v="$2,905" data-p="(+93.71%)" data-pf="37.42" data-t="62" data-d="0.39%"><span class="bar"></span><span class="nm">Live 48</span><span class="vl">$2,905</span></button>
+      <button class="acct" aria-pressed="false" data-n="Live 42" data-v="$2,738" data-p="(+91.27%)" data-pf="31.08" data-t="58" data-d="0.51%"><span class="bar"></span><span class="nm">Live 42</span><span class="vl">$2,738</span></button>
+      <button class="acct" aria-pressed="false" data-n="Live 53" data-v="$2,738" data-p="(+85.55%)" data-pf="28.94" data-t="71" data-d="0.44%"><span class="bar"></span><span class="nm">Live 53</span><span class="vl">$2,738</span></button>
+      <button class="acct" aria-pressed="false" data-n="Live 41" data-v="$2,689" data-p="(+1489.32%)" data-pf="52.16" data-t="204" data-d="1.02%"><span class="bar"></span><span class="nm">Live 41</span><span class="vl">$2,689</span></button>
+      <button class="acct" aria-pressed="false" data-n="Live 19" data-v="$2,616" data-p="(+83.86%)" data-pf="26.77" data-t="49" data-d="0.62%"><span class="bar"></span><span class="nm">Live 19</span><span class="vl">$2,616</span></button>
+      <button class="acct" aria-pressed="false" data-n="Live 37" data-v="$2,546" data-p="(+82.13%)" data-pf="24.51" data-t="44" data-d="0.71%"><span class="bar"></span><span class="nm">Live 37</span><span class="vl">$2,546</span></button>
+      <button class="acct" aria-pressed="false" data-n="Live 40" data-v="$2,478" data-p="(+89.78%)" data-pf="22.83" data-t="53" data-d="0.58%"><span class="bar"></span><span class="nm">Live 40</span><span class="vl">$2,478</span></button>
     </div>
-
-    <div class="step" data-step="2">
-      <p class="max-w-[1100px] text-[clamp(25px,2.6vw,40px)] leading-[1.18] tracking-[-0.015em]">
-        Цена до брокера проходит длинный путь.<br />
-        Каждый шаг — <span class="text-accent">потеря времени.</span>
-      </p>
-    </div>
-
-    <div class="step" data-step="3">
-      <p class="max-w-[1100px] text-[clamp(25px,2.6vw,40px)] leading-[1.18] tracking-[-0.015em]">
-        Мы получаем поток данных <span class="text-accent">напрямую,</span> без обработки и без задержки. Алгоритм сравнивает его с ценой брокера и находит окно опережения.
-      </p>
-    </div>
-
-    <div class="step" data-step="4">
-      <p class="max-w-[1100px] text-[clamp(25px,2.6vw,40px)] leading-[1.18] tracking-[-0.015em]">
-        Когда цена у брокера меняется, <span class="text-accent">наш ордер уже стоит.</span> Никаких эмоций, только данные и скорость.
-      </p>
-    </div>
-
-    <div class="step" data-step="5">
-      <div>
-        <h2 class="text-[clamp(50px,6vw,92px)] font-light leading-none tracking-[-0.025em]">
-          Это и есть <span class="text-accent">OnlyProfit.</span>
-        </h2>
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a href="#products" class="group inline-flex items-center gap-2 rounded-full border border-white/16 px-8 py-4 text-[clamp(20px,1.6vw,24px)] font-semibold transition hover:border-white/30">
-            <span><span class="text-ink">Only</span><span class="text-forex">Forex</span></span>
-            <span class="text-forex transition-transform duration-500 group-hover:translate-x-1">→</span>
-          </a>
-          <a href="#products" class="group inline-flex items-center gap-2 rounded-full border border-white/16 px-8 py-4 text-[clamp(20px,1.6vw,24px)] font-semibold transition hover:border-white/30">
-            <span><span class="text-ink">Only</span><span class="text-accent">Binary</span></span>
-            <span class="text-accent transition-transform duration-500 group-hover:translate-x-1">→</span>
-          </a>
-        </div>
-        <p class="mt-8 text-[15px] text-muted">Латентный арбитраж с 2023 года</p>
-      </div>
-    </div>
-
-    <div class="veil"></div>
   </div>
 </section>
 
-<!-- ================= RESULTS ================= -->
-<div class="mx-auto h-px max-w-[1100px] bg-white/8"></div>
-<section id="results" class="reveal mx-auto max-w-site scroll-mt-20 px-[clamp(20px,4vw,80px)] pb-12 pt-20">
-  <h2 class="mb-5 text-[clamp(32px,4vw,50px)] font-light leading-[1.08]">Верифицировано на <span class="font-normal text-accent">Myfxbook</span></h2>
-  <p class="mb-11 max-w-[760px] text-[16px] leading-relaxed text-sec">Myfxbook сверяет историю сделок с данными брокера. Пополнения, выводы, прибыль и просадка — всё открыто для вашей проверки ещё до регистрации и покупки.</p>
+<div class="hr"></div>
 
-  <div class="grid grid-cols-1 gap-0 lg:grid-cols-[1fr_300px] lg:gap-8">
-    <div class="card-thick p-6 md:p-9">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <span id="bigLabel" class="font-mono text-[13px]">Live 48</span>
-        <span class="text-[13px] text-muted">Полный отчёт на Myfxbook ↗</span>
-      </div>
-      <div class="mt-6 flex flex-wrap items-baseline gap-3">
-        <span id="bigValue" class="font-light leading-none tracking-[-0.03em] tabular-nums text-accent" style="font-size:clamp(48px,6.4vw,96px);text-shadow:0 0 38px rgba(0,255,136,.3)">$2,905</span>
-        <span id="bigPct" class="font-light tabular-nums text-sec" style="font-size:clamp(18px,2vw,28px)">(+93.71%)</span>
-      </div>
-      <svg viewBox="0 0 600 240" preserveAspectRatio="none" class="mt-6 block h-[150px] w-full md:h-[210px]" aria-hidden="true">
-        <defs>
-          <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(0,255,136,.22)"/><stop offset="100%" stop-color="rgba(0,255,136,0)"/></linearGradient>
-          <path id="lp" d="M0,232 C28,228 44,214 68,209 C92,204 108,220 132,206 C156,192 172,168 198,166 C224,164 240,181 264,164 C288,147 304,127 330,130 C356,133 370,151 394,127 C418,103 434,92 458,89 C482,86 498,77 522,68 C546,59 574,50 600,36"/>
-        </defs>
-        <use href="#lp" fill="url(#fg)" stroke="none"/>
-        <use href="#lp" fill="none" stroke="#00ff88" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="mt-6 grid grid-cols-3 gap-x-6 gap-y-4 border-t border-white/8 pt-5">
-        <div><div class="mb-1.5 text-[12px] text-muted">p.factor</div><div id="bigPf" class="font-mono text-[17px] tabular-nums">37.42</div></div>
-        <div><div class="mb-1.5 text-[12px] text-muted">сделок</div><div id="bigTrades" class="font-mono text-[17px] tabular-nums">62</div></div>
-        <div><div class="mb-1.5 text-[12px] text-muted">просадка</div><div id="bigDd" class="font-mono text-[17px] tabular-nums">0.39%</div></div>
-      </div>
+<section class="wrap reveal sec" id="products">
+  <div class="sec-head">
+    <h2 class="h2">Наши <span class="accent" style="font-weight:400">продукты</span></h2>
+    <p class="lead">Обе программы видят новую цену раньше брокера или платформы и успевают открыть сделку по старой.</p>
+  </div>
+  <div class="g2">
+    <a href="forex.html" class="card" style="padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:14px">
+      <h3 class="h3">Only<span class="blue">Forex</span></h3>
+      <p class="small" style="color:var(--muted)">Для форекс-счёта у вашего брокера</p>
+      <p class="body">Программа опережает брокера и открывает сделку, пока у брокера ещё старая цена. Торгует автоматически, вы выбираете стратегию и размер сделок.</p>
+      <p class="mono" style="font-size:32px;font-weight:300;margin-top:auto">$2,999</p>
+      <p class="cap">одним платежом, экономия $1,000 · или 3 платежа по $1,333</p>
+      <span class="btn blue sm" style="align-self:flex-start">Перейти</span>
+    </a>
+    <a href="binary.html" class="card" style="padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:14px">
+      <h3 class="h3">Only<span class="accent">Binary</span></h3>
+      <p class="small" style="color:var(--muted)">Для MEXC, Pocket Option, Olymp Trade, IQ Option, Binomo</p>
+      <p class="body">Программа открывает сделки раньше, чем цена обновится на платформе. Работает в вашем Chrome. Деньги остаются на вашем счёте.</p>
+      <p class="mono" style="font-size:32px;font-weight:300;margin-top:auto">от $35</p>
+      <p class="cap">в неделю, можно взять на месяц, 3 месяца или год</p>
+      <span class="btn sm" style="align-self:flex-start">Перейти</span>
+    </a>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="sec-head">
+    <h2 class="h2">Всё для старта <span class="accent" style="font-weight:400">в комплекте</span></h2>
+    <p class="body">Проверьте программу бесплатно, пройдите обучение и запускайтесь с поддержкой. С вашей стороны: компьютер с Windows или VPS.</p>
+  </div>
+  <div class="g3">
+    <div class="tile feat"><span class="accent" style="font-size:32px;font-weight:300">24</span> <span class="small">часа тестового ключа</span><p class="small" style="color:var(--muted);margin-top:8px">Бесплатно после регистрации. Тест действует сутки с первого запуска.</p></div>
+    <div class="tile feat"><span class="accent" style="font-size:32px;font-weight:300">2</span> <span class="small">курса обучения</span><p class="small" style="color:var(--muted);margin-top:8px">По одному на продукт: от установки до первой сделки.</p></div>
+    <div class="tile feat"><span class="accent" style="font-size:32px;font-weight:300">24/7</span> <span class="small">поддержка</span><p class="small" style="color:var(--muted);margin-top:8px">Живые специалисты: установка, настройка, вопросы по программе.</p></div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="card price">
+    <div>
+      <h2 class="h2">Начните с тестового ключа.</h2>
+      <p class="lead" style="margin-top:16px;max-width:520px">Сутки работы программы, бесплатно после регистрации.</p>
     </div>
+    <a href="trial.html" class="btn">Получить тестовый ключ</a>
+  </div>
+</section>
 
-    <div class="tile-thick mt-6 overflow-hidden lg:mt-0">
-      <div class="max-h-[300px] overflow-y-auto lg:max-h-none" id="acctList">
-        <button type="button" aria-pressed="true"  class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,.05)]" data-n="Live 48" data-v="$2,905" data-p="(+93.71%)" data-pf="37.42" data-t="62" data-d="0.39%"><span class="bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span><span class="nm font-mono text-[13px] text-sec">Live 48</span><span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="vl text-[14px] text-muted">$2,905</span><span class="text-[11px] text-muted">(+93.71%)</span></span></button>
-        <button type="button" aria-pressed="false" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,.05)]" data-n="Live 42" data-v="$2,738" data-p="(+91.27%)" data-pf="31.08" data-t="58" data-d="0.51%"><span class="bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span><span class="nm font-mono text-[13px] text-sec">Live 42</span><span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="vl text-[14px] text-muted">$2,738</span><span class="text-[11px] text-muted">(+91.27%)</span></span></button>
-        <button type="button" aria-pressed="false" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,.05)]" data-n="Live 53" data-v="$2,738" data-p="(+85.55%)" data-pf="28.94" data-t="71" data-d="0.44%"><span class="bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span><span class="nm font-mono text-[13px] text-sec">Live 53</span><span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="vl text-[14px] text-muted">$2,738</span><span class="text-[11px] text-muted">(+85.55%)</span></span></button>
-        <button type="button" aria-pressed="false" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,.05)]" data-n="Live 41" data-v="$2,689" data-p="(+1489.32%)" data-pf="52.16" data-t="204" data-d="1.02%"><span class="bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span><span class="nm font-mono text-[13px] text-sec">Live 41</span><span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="vl text-[14px] text-muted">$2,689</span><span class="text-[11px] text-muted">(+1489.32%)</span></span></button>
-        <button type="button" aria-pressed="false" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,.05)]" data-n="Live 19" data-v="$2,616" data-p="(+83.86%)" data-pf="26.77" data-t="49" data-d="0.62%"><span class="bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span><span class="nm font-mono text-[13px] text-sec">Live 19</span><span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="vl text-[14px] text-muted">$2,616</span><span class="text-[11px] text-muted">(+83.86%)</span></span></button>
-        <button type="button" aria-pressed="false" class="acct relative flex w-full items-baseline justify-between border-b border-white/8 px-5 py-4 text-left hover:bg-[rgba(0,255,136,.05)]" data-n="Live 37" data-v="$2,546" data-p="(+82.13%)" data-pf="24.51" data-t="44" data-d="0.71%"><span class="bar absolute inset-y-0 left-0 block w-[2px] bg-transparent"></span><span class="nm font-mono text-[13px] text-sec">Live 37</span><span class="flex items-baseline gap-1.5 font-mono tabular-nums"><span class="vl text-[14px] text-muted">$2,546</span><span class="text-[11px] text-muted">(+82.13%)</span></span></bu
+<div class="hr"></div>
+
+<section class="wrap reveal sec" style="text-align:center">
+  <h2 style="font-size:clamp(48px,9vw,120px);font-weight:300;line-height:.9;letter-spacing:-.035em">Исполнение<span class="accent">.</span></h2>
+  <p class="small" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;color:var(--muted)">
+    <span style="text-decoration:line-through">не сигналы или обучение</span>
+    <span style="text-decoration:line-through">не копитрейдинг</span>
+    <span style="text-decoration:line-through">не инвестфонд</span>
+    <span style="text-decoration:line-through">не «пассивный доход»</span>
+  </p>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap foot-in">
+  <a href="index.html" class="brand" style="font-size:13px"><b>Only</b><i>Profit</i></a>
+  <nav aria-label="Навигация в подвале">
+    <a href="forex.html">OnlyForex</a><a href="binary.html">OnlyBinary</a>
+    <a href="guides.html">Обучение</a><a href="articles.html">Статьи</a>
+    <a href="support.html">Поддержка</a><a href="terms.html">Условия</a><a href="privacy.html">Конфиденциальность</a>
+    <a href="https://t.me/onlyprofit_io" target="_blank" rel="noopener">Telegram</a>
+  </nav>
+  <span class="copy">© 2026</span>
+</div></footer>
+
+<a href="https://t.me/onlyprofit_io" target="_blank" rel="noopener" class="chat tile" aria-label="Написать в поддержку">
+  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 18.5 4 20l1.2-3.6A7.5 7.5 0 0 1 4 12.5C4 8.4 7.6 5 12 5s8 3.4 8 7.5-3.6 7.5-8 7.5a8.6 8.6 0 0 1-4.5-1.5Z"/></svg>
+</a>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+<script type="module" src="assets/hero.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#050507" />
+<title>OnlyForex — латентный арбитраж для форекс-счетов</title>
+<meta name="description" content="Программа опережает брокера и открывает сделку, пока у него ещё старая цена. 10+ стратегий, бэктест, 2 ключа на одной лицензии." />
+<link rel="canonical" href="forex.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="OnlyForex — латентный арбитраж" />
+<meta property="og:description" content="Автоматическое исполнение в окне задержки котировок. Лицензия навсегда, 2 ключа." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23050507'/%3E%3Ctext x='50' y='68' font-size='54' font-family='sans-serif' font-weight='bold' fill='%2320baff' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+<a href="#main" class="skip">К содержанию</a>
+
+<nav class="nav" aria-label="Основная навигация"><div class="nav-in glass">
+  <div class="nav-row">
+    <a href="index.html" class="brand" aria-label="OnlyProfit — на главную">
+      <svg viewBox="0 0 100 86.43" aria-hidden="true"><path d="M64.53,32.15A32.44,29.4 0 1 1 -0.35,32.15A32.44,29.4 0 1 1 64.53,32.15ZM50.12,32.19A17.75,18.28 0 1 0 14.62,32.19A17.75,18.28 0 1 0 50.12,32.19Z"/></svg>
+      <span><b>Only</b><i>Profit</i></span>
+    </a>
+    <div class="nav-links">
+      <a href="forex.html" aria-current="page"><span style="color:var(--muted)">Only</span><span class="blue">Forex</span></a>
+      <a href="binary.html"><span style="color:var(--muted)">Only</span><span class="accent">Binary</span></a>
+      <span class="sep"></span>
+      <a href="articles.html">Статьи</a>
+      <a href="guides.html">Обучение</a>
+    </div>
+    <span class="sep tall"></span>
+    <div class="lang"><button aria-pressed="false">EN</button><button aria-pressed="true">RU</button></div>
+    <a href="trial.html" class="login-btn">Войти</a>
+    <button id="burger" class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="forex.html">Only<span class="blue">Forex</span></a>
+    <a href="binary.html">Only<span class="accent">Binary</span></a>
+    <a href="articles.html">Статьи</a><a href="guides.html">Обучение</a>
+    <a href="trial.html">Тестовый ключ</a><a href="support.html">Поддержка</a>
+  </div>
+</div></nav>
+
+<main id="main">
+<header class="phero">
+  <canvas id="gl" data-scene="grid" aria-hidden="true"></canvas>
+  <div class="glow blue"></div>
+  <div class="fade"></div>
+  <div class="wrap">
+    <p class="eyebrow">Продукт · Лицензия навсегда</p>
+    <h1 class="h1" style="margin-top:20px">Only<span class="blue">Forex</span></h1>
+    <p class="lead" style="margin-top:28px;max-width:620px">Программа опережает брокера и открывает сделку, пока у брокера ещё старая цена. Торгует автоматически — вы выбираете стратегию и размер сделок.</p>
+    <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:16px">
+      <a href="trial.html" class="btn">Тестовый ключ</a>
+      <a href="#price" class="btn ghost">$2,999 · купить</a>
+    </div>
+  </div>
+</header>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="sec-head"><h2 class="h2">Что внутри</h2></div>
+  <div class="g3">
+    <div class="tile feat"><h3>10+ стратегий</h3><p class="small">Готовые наборы параметров и бэктест в один клик. Можно собрать свою.</p></div>
+    <div class="tile feat"><h3>Свой порог дельты</h3><p class="small">Управление чувствительностью детекции задержки под конкретного брокера.</p></div>
+    <div class="tile feat"><h3>Два ключа</h3><p class="small">Два компьютера на одну лицензию. Платите один раз, без подписки.</p></div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="sec-head"><h2 class="h2">Как это работает</h2></div>
+  <div class="g2">
+    <div class="card feat"><span class="n mono">01</span><h3>Быстрый фид</h3><p class="small">Институциональный ценовой поток обновляется быстрее миллисекунды.</p></div>
+    <div class="card feat"><span class="n mono">02</span><h3>Детекция</h3><p class="small">Алгоритм непрерывно сравнивает фид с котировкой брокера и находит окно опережения.</p></div>
+    <div class="card feat"><span class="n mono">03</span><h3>Исполнение</h3><p class="small">Ордер уходит до коррекции цены у брокера. Полный автомат, без эмоций.</p></div>
+    <div class="card feat"><span class="n mono">04</span><h3>Проверка</h3><p class="small">100+ счетов с открытой историей на Myfxbook — до любой покупки.</p></div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec" id="price">
+  <div class="card price">
+    <div>
+      <p class="eyebrow">Лицензия · бессрочно</p>
+      <p class="sum" style="margin-top:16px">$2,999</p>
+      <p class="small" style="margin-top:8px">одним платежом, экономия $1,000 · или 3 платежа по $1,333</p>
+    </div>
+    <a href="trial.html" class="btn">Купить</a>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="narrow reveal sec">
+  <h2 class="h2" style="margin-bottom:24px">Вопросы</h2>
+  <details class="acc"><summary>Нужен ли VPS?<i>+</i></summary><p>Нет, программа работает на Windows 10 и новее. VPS нужен, только если хотите, чтобы торговля шла круглосуточно.</p></details>
+  <details class="acc"><summary>На каких брокерах работает?<i>+</i></summary><p>Любой брокер с MT5 и задержкой котировок. Список проверенных — в обучении.</p></details>
+  <details class="acc"><summary>Можно вернуть деньги?<i>+</i></summary><p>Сначала берётся бесплатный тестовый ключ на сутки — на живых котировках, без оплаты.</p></details>
+  <details class="acc"><summary>Сколько ключей в покупке?<i>+</i></summary><p>Два. Лицензия привязывается к двум компьютерам, сброс доступен из панели.</p></details>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap foot-in">
+  <a href="index.html" class="brand" style="font-size:13px"><b>Only</b><i>Profit</i></a>
+  <nav aria-label="Навигация в подвале"><a href="forex.html">OnlyForex</a><a href="binary.html">OnlyBinary</a><a href="guides.html">Обучение</a><a href="articles.html">Статьи</a><a href="support.html">Поддержка</a><a href="terms.html">Условия</a><a href="privacy.html">Конфиденциальность</a></nav>
+  <span class="copy">© 2026</span>
+</div></footer>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+<script type="module" src="assets/hero.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
+    <!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#050507" />
+<title>OnlyBinary — терминал для веб-платформ</title>
+<meta name="description" content="Программа открывает сделки раньше, чем цена обновится на платформе. MEXC, Pocket Option, Olymp Trade, IQ Option, Binomo. От $35 в неделю." />
+<link rel="canonical" href="binary.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="OnlyBinary — терминал для веб-платформ" />
+<meta property="og:description" content="Латентный арбитраж для бинарных опционов. Деньги остаются на вашем счёте." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23050507'/%3E%3Ctext x='50' y='68' font-size='54' font-family='sans-serif' font-weight='bold' fill='%2300ff88' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+<a href="#main" class="skip">К содержанию</a>
+
+<nav class="nav" aria-label="Основная навигация"><div class="nav-in glass">
+  <div class="nav-row">
+    <a href="index.html" class="brand" aria-label="OnlyProfit — на главную">
+      <svg viewBox="0 0 100 86.43" aria-hidden="true"><path d="M64.53,32.15A32.44,29.4 0 1 1 -0.35,32.15A32.44,29.4 0 1 1 64.53,32.15ZM50.12,32.19A17.75,18.28 0 1 0 14.62,32.19A17.75,18.28 0 1 0 50.12,32.19Z"/></svg>
+      <span><b>Only</b><i>Profit</i></span>
+    </a>
+    <div class="nav-links">
+      <a href="forex.html"><span style="color:var(--muted)">Only</span><span class="blue">Forex</span></a>
+      <a href="binary.html" aria-current="page"><span style="color:var(--muted)">Only</span><span class="accent">Binary</span></a>
+      <span class="sep"></span>
+      <a href="articles.html">Статьи</a>
+      <a href="guides.html">Обучение</a>
+    </div>
+    <span class="sep tall"></span>
+    <div class="lang"><button aria-pressed="false">EN</button><button aria-pressed="true">RU</button></div>
+    <a href="trial.html" class="login-btn">Войти</a>
+    <button id="burger" class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="forex.html">Only<span class="blue">Forex</span></a>
+    <a href="binary.html">Only<span class="accent">Binary</span></a>
+    <a href="articles.html">Статьи</a><a href="guides.html">Обучение</a>
+    <a href="trial.html">Тестовый ключ</a><a href="support.html">Поддержка</a>
+  </div>
+</div></nav>
+
+<main id="main">
+<header class="phero">
+  <canvas id="gl" data-scene="grid" aria-hidden="true"></canvas>
+  <div class="glow"></div>
+  <div class="fade"></div>
+  <div class="wrap">
+    <p class="eyebrow">Продукт · Подписка</p>
+    <h1 class="h1" style="margin-top:20px">Only<span class="accent">Binary</span></h1>
+    <p class="lead" style="margin-top:28px;max-width:620px">Программа открывает сделки раньше, чем цена обновится на платформе. Работает в вашем Google Chrome, как обычный трейдер. Деньги остаются на вашем счёте — вывод доступен только вам.</p>
+    <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:16px">
+      <a href="trial.html" class="btn">Тестовый ключ</a>
+      <a href="#price" class="btn ghost">от $35 · купить</a>
+    </div>
+  </div>
+</header>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="sec-head"><h2 class="h2">Поддерживаемые платформы</h2><p class="body">Плюс кликер для остальных — работает там, где есть браузерный терминал.</p></div>
+  <div style="display:flex;flex-wrap:wrap;gap:10px">
+    <span class="tile" style="padding:9px 18px;font-size:14px">MEXC</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">Pocket Option</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">Olymp Trade</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">1Trade</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">IQ Option</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">Binomo</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">intrade.bar</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">Binolla</span>
+    <span class="tile" style="padding:9px 18px;font-size:14px">Expert Option</span>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="sec-head"><h2 class="h2">Что внутри</h2></div>
+  <div class="g3">
+    <div class="tile feat"><h3>Работа в Chrome</h3><p class="small">Программа действует как обычный трейдер в вашем браузере, без сторонних API.</p></div>
+    <div class="tile feat"><h3>Кликер</h3><p class="small">Для платформ без прямой интеграции — автоматические клики по сигналу.</p></div>
+    <div class="tile feat"><h3>Обучение в подписке</h3><p class="small">Курс от установки до первой сделки и поддержка круглосуточно.</p></div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec" id="price">
+  <div class="card price">
+    <div>
+      <p class="eyebrow">Подписка · от недели</p>
+      <p class="sum" style="margin-top:16px">от $35</p>
+      <p class="small" style="margin-top:8px">в неделю, можно взять на месяц, 3 месяца или год</p>
+    </div>
+    <a href="trial.html" class="btn">Купить</a>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section class="narrow reveal sec">
+  <h2 class="h2" style="margin-bottom:24px">Вопросы</h2>
+  <details class="acc"><summary>Деньги хранятся у вас?<i>+</i></summary><p>Да. Программа торгует через ваш аккаунт у брокера, средства не переходят к нам.</p></details>
+  <details class="acc"><summary>Нужно держать компьютер включённым?<i>+</i></summary><p>Да, программа работает локально. Для круглосуточной торговли подойдёт VPS с Windows.</p></details>
+  <details class="acc"><summary>Можно сменить тариф?<i>+</i></summary><p>Можно в любой момент из панели: ключ остаётся прежним, меняется только срок и цена.</p></details>
+  <details class="acc"><summary>Есть тестовый период?<i>+</i></summary><p>Да, бесплатный ключ на сутки после регистрации, на тестовом счёте.</p></details>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap foot-in">
+  <a href="index.html" class="brand" style="font-size:13px"><b>Only</b><i>Profit</i></a>
+  <nav aria-label="Навигация в подвале"><a href="forex.html">OnlyForex</a><a href="binary.html">OnlyBinary</a><a href="guides.html">Обучение</a><a href="articles.html">Статьи</a><a href="support.html">Поддержка</a><a href="terms.html">Условия</a><a href="privacy.html">Конфиденциальность</a></nav>
+  <span class="copy">© 2026</span>
+</div></footer>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+<script type="module" src="assets/hero.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
+
+    <!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#050507" />
+<title>Тест-драйв — 24 часа бесплатно | OnlyProfit</title>
+<meta name="description" content="Сутки торговли на живых котировках бесплатно. Ключ и тестовый счёт, инструкция по установке." />
+<link rel="canonical" href="trial.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23050507'/%3E%3Ctext x='50' y='68' font-size='54' font-family='sans-serif' font-weight='bold' fill='%2300ff88' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+<a href="#main" class="skip">К содержанию</a>
+
+<nav class="nav" aria-label="Основная навигация"><div class="nav-in glass">
+  <div class="nav-row">
+    <a href="index.html" class="brand" aria-label="OnlyProfit — на главную">
+      <svg viewBox="0 0 100 86.43" aria-hidden="true"><path d="M64.53,32.15A32.44,29.4 0 1 1 -0.35,32.15A32.44,29.4 0 1 1 64.53,32.15ZM50.12,32.19A17.75,18.28 0 1 0 14.62,32.19A17.75,18.28 0 1 0 50.12,32.19Z"/></svg>
+      <span><b>Only</b><i>Profit</i></span>
+    </a>
+    <div class="nav-links">
+      <a href="forex.html"><span style="color:var(--muted)">Only</span><span class="blue">Forex</span></a>
+      <a href="binary.html"><span style="color:var(--muted)">Only</span><span class="accent">Binary</span></a>
+      <span class="sep"></span>
+      <a href="articles.html">Статьи</a>
+      <a href="guides.html">Обучение</a>
+    </div>
+    <span class="sep tall"></span>
+    <div class="lang"><button aria-pressed="false">EN</button><button aria-pressed="true">RU</button></div>
+    <a href="trial.html" class="login-btn">Войти</a>
+    <button id="burger" class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </div>
+  <div id="mobileMenu">
+    <a href="forex.html">Only<span class="blue">Forex</span></a>
+    <a href="binary.html">Only<span class="accent">Binary</span></a>
+    <a href="articles.html">Статьи</a><a href="guides.html">Обучение</a>
+    <a href="trial.html">Тестовый ключ</a><a href="support.html">Поддержка</a>
+  </div>
+</div></nav>
+
+<main id="main">
+<header class="phero">
+  <canvas id="gl" data-scene="mono" aria-hidden="true"></canvas>
+  <div class="glow"></div>
+  <div class="fade"></div>
+  <div class="wrap">
+    <p class="eyebrow">Тест-драйв · бесплатно</p>
+    <h1 class="h1" style="margin-top:20px">24 часа на живых котировках.</h1>
+    <p class="lead" style="margin-top:28px;max-width:620px">Время идёт с первого запуска программы, ключ на каждый продукт свой. Только тестовый счёт — депозит не нужен.</p>
+    <div style="margin-top:36px"><a href="https://t.me/onlyprofit_io" target="_blank" rel="noopener" class="btn">Получить ключ</a></div>
+  </div>
+</header>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="sec-head"><h2 class="h2">Четыре шага</h2></div>
+  <ol class="g2" style="counter-reset:s">
+    <li class="card feat"><span class="n mono">01</span><h3>Получите ключ и счёт</h3><p class="small">Один инструмент XAU/USD. Депозит $1000 на тестовом счёте, плечо 1:100.</p></li>
+    <li class="card feat"><span class="n mono">02</span><h3>Выберите, где работать</h3><p class="small">Компьютер с Windows или удалёнка. Ключ привяжется к месту первого запуска.</p></li>
+    <li class="card feat"><span class="n mono">03</span><h3>Установите программу</h3><p class="small">Скачайте, установите, введите ключ при первом запуске.</p></li>
+    <li class="card feat"><span class="n mono">04</span><h3>Запустите стратегию</h3><p class="small">Вкладка Impulse Adaptive, символ XAU/USD, кнопка «Старт».</p></li>
+  </ol>
+</section>
+
+<div class="hr"></div>
+
+<section class="wrap reveal sec">
+  <div class="card price">
+    <div>
+      <h2 class="h2">Тест закончился?</h2>
+      <p class="lead" style="margin-top:16px;max-width:520px">Продолжить можно по подписке — ключ и настройки сохранятся.</p>
+    </div>
+    <a href="binary.html" class="btn">Смотреть тарифы</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap foot-in">
+  <a href="index.html" class="brand" style="font-size:13px"><b>Only</b><i>Profit</i></a>
+  <nav aria-label="Навигация в подвале"><a href="forex.html">OnlyForex</a><a href="binary.html">OnlyBinary</a><a href="guides.html">Обучение</a><a href="articles.html">Статьи</a><a href="support.html">Поддержка</a><a href="terms.html">Условия</a><a href="privacy.html">Конфиденциальность</a></nav>
+  <span class="copy">© 2026</span>
+</div></footer>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+<script type="module" src="assets/hero.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
