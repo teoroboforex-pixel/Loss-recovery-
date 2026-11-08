@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKh — Loss Recovery Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #020202;
+      color: white;
+      margin: 0;
+    }
+
+    .hero-gradient {
+      background: 
+        radial-gradient(ellipse 100% 80% at 50% -40%, rgba(34, 197, 94, 0.22), transparent 50%),
+        radial-gradient(ellipse 60% 50% at 85% 30%, rgba(16, 185, 129, 0.1), transparent),
+        #020202;
+    }
+
+    .pill-header {
+      background: rgba(22, 22, 22, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .green-glow {
+      box-shadow: 0 0 60px rgba(34, 197, 94, 0.45);
+    }
+  </style>
+</head>
+<body class="hero-gradient">
+
+  <!-- Floating pill header -->
+  <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+    <div class="pill-header rounded-full flex items-center justify-between px-5 py-2.5 w-full max-w-3xl">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-[11px] font-bold text-black">SKh</div>
+        <span class="font-semibold text-sm">Loss Recovery</span>
+      </div>
+
+      <div class="hidden sm:flex items-center gap-6 text-[13px] text-white/55">
+        <a href="#how" class="hover:text-white transition">Как работает</a>
+        <a href="#platforms" class="hover:text-white transition">Платформы</a>
+        <a href="#faq" class="hover:text-white transition">FAQ</a>
+      </div>
+
+      <a href="https://t.me/BinaryManager" class="bg-green-500 hover:bg-green-400 text-black text-[13px] font-semibold px-4 py-1.5 rounded-full transition">
+        Написать
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center px-4">
+    <div class="text-center max-w-4xl pt-16">
+      <h1 class="text-[clamp(2.6rem,7.5vw,5.5rem)] font-bold leading-[1.08] tracking-tight mb-8">
+        Убыток на счёте.<br>
+        Мы берём управление.<br>
+        <span class="text-green-400">Вы получаете результат.</span>
+      </h1>
+
+      <p class="text-white/40 text-lg sm:text-xl max-w-lg mx-auto mb-12 leading-relaxed">
+        Восстанавливаем убытки на бинарных опционах и криптобиржах.<br>
+        Все финансовые риски берём на себя.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+        <a href="https://t.me/BinaryManager" 
+           class="bg-green-500 hover:bg-green-400 text-black font-semibold px-10 py-3.5 rounded-full text-[15px] transition green-glow">
+          Начать →
+        </a>
+        <a href="https://t.me/LossRecoveryHub" class="text-white/45 hover:text-white text-[15px] font-medium transition">
+          Результаты
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-y border-white/5 py-12">
+    <div class="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="text-2xl font-bold text-green-400">от $1 000</div>
+        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">минимальный убыток</div>
+      </div>
+      <div>
+        <div class="text-2xl font-bold">60 / 40</div>
+        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">разделение</div>
+      </div>
+      <div>
+        <div class="text-2xl font-bold">0$</div>
+        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">ваших вложений</div>
+      </div>
+      <div>
+        <div class="text-2xl font-bold">2019</div>
+        <div class="text-[11px] text-white/30 mt-1.5 uppercase tracking-widest">год начала</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="py-28 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16 tracking-tight">Как это работает</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">01</div>
+          <h3 class="font-semibold mb-2">Вы пишете</h3>
+          <p class="text-white/35 text-sm leading-relaxed">Присылаете скрины статистики и сумму убытка</p>
+        </div>
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">02</div>
+          <h3 class="font-semibold mb-2">Согласовываем</h3>
+          <p class="text-white/35 text-sm leading-relaxed">Условия 60/40 фиксируем в договоре</p>
+        </div>
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">03</div>
+          <h3 class="font-semibold mb-2">Мы работаем</h3>
+          <p class="text-white/35 text-sm leading-relaxed">Сами пополняем и выводим аккаунт в плюс</p>
+        </div>
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
+          <div class="text-green-400 text-xs font-medium mb-4 tracking-wider">04</div>
+          <h3 class="font-semibold mb-2">Возвращаем</h3>
+          <p class="text-white/35 text-sm leading-relaxed">После результата отдаём полный доступ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platforms -->
+  <section id="platforms" class="py-20 px-4 border-t border-white/5">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-10 tracking-tight">Платформы</h2>
+      <div class="flex flex-wrap justify-center gap-2.5">
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Pocket Option</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Quotex</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">IQ Option</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Olymp Trade</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Binolla</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Binomo</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">Expert Option</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">MEXC</span>
+        <span class="bg-white/[0.04] border border-white/5 rounded-full px-4 py-2 text-sm text-white/70">BingX</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-24 px-4">
+    <div class="max-w-xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 tracking-tight">Вопросы</h2>
+
+      <div class="space-y-2.5">
+        **Summary:**
+
+            Какой минимальный убыток?
+            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
+          
+          <p class="px-5 pb-4 text-white/40 text-sm">От $1 000. Лучше от $2 000.</p>
+
+        **Summary:**
+
+            Нужно ли мне что-то вносить?
+            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
+          
+          <p class="px-5 pb-4 text-white/40 text-sm">Нет. Все расходы берём на себя.</p>
+
+        **Summary:**
+
+            Как делится прибыль?
+            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
+          
+          <p class="px-5 pb-4 text-white/40 text-sm">Обычно 60% нам / 40% вам. Фиксируем в договоре.</p>
+
+        **Summary:**
+
+            Когда возвращаете доступ?
+            <span class="text-green-400 group-open:rotate-45 transition text-lg">+</span>
+          
+          <p class="px-5 pb-4 text-white/40 text-sm">Сразу после полного восстановления и вывода прибыли.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-28 px-4 text-center">
+    <h2 class="text-4xl sm:text-5xl font-bold mb-6 tracking-tight leading-tight">
+      Готовы восстановить<br>
+      <span class="text-green-400">убытки?</span>
+    </h2>
+    <p class="text-white/35 mb-10">Напишите — оценим аккаунт и предложим условия</p>
+    
+    <a href="https://t.me/BinaryManager" 
+       class="inline-block bg-green-500 hover:bg-green-400 text-black font-semibold px-11 py-3.5 rounded-full transition green-glow">
+      @BinaryManager
+    </a>
+    
+    <p class="mt-7 text-sm text-white/25">
+      Канал → <a href="https://t.me/LossRecoveryHub" class="text-green-400/60 hover:text-green-400">t.me/LossRecoveryHub</a>
+    </p>
+  </section>
+
+  <footer class="border-t border-white/5 py-8 text-center text-white/20 text-xs">
+    SKh | Loss Recovery Hub · 2019–2026
+  </footer>
+
+</body>
+</html>
